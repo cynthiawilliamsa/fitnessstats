@@ -8,7 +8,7 @@ class Header extends Component {
       <div className="Header">
         <AppBar position="static">
         <Toolbar>
-          Fitness Stats App
+          <h1>Fitness Stats Tracker</h1>
         </Toolbar>
       </AppBar>
       </div>

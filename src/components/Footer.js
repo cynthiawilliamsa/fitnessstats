@@ -16,10 +16,10 @@ class Footer extends Component {
           centered
         >
           {/* <Tab label="New Entries" /> */}
-          <Tab label="Body Fat" />
-          <Tab label="Measurements"/>
-          <Tab label="Resting HR"/>
-          <Tab label="Caloric Intake"/>
+          <Tab label="BF"/>          
+          <Tab label="Girth"/>
+          <Tab label="RHR"/>
+          <Tab label="Nutrition"/>
         </Tabs>
       </Paper>
         </div>
