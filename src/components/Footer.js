@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import '../App.css';
+
 
 class Footer extends Component {
     render() {
@@ -19,9 +21,10 @@ class Footer extends Component {
           <Tab label="BF"/>          
           <Tab label="Girth"/>
           <Tab label="RHR"/>
-          <Tab label="Nutrition"/>
+          {/* <Tab label="Nutrition"/> */}
         </Tabs>
       </Paper>
+      
         </div>
       );
     }
