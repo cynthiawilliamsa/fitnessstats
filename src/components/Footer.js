@@ -3,6 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import '../App.css';
+import {Link} from 'react-router-dom';
 
 
 class Footer extends Component {
@@ -18,9 +19,9 @@ class Footer extends Component {
           centered
         >
           {/* <Tab label="New Entries" /> */}
-          <Tab label="BF"/>          
-          <Tab label="Girth"/>
-          <Tab label="RHR"/>
+          <Tab label="New Entry" component={Link} to="NewFormEntry"/>          
+          <Tab label="Progress" component={Link} to="Progress"/>
+          {/* <Tab label="RHR" component={Link} to="RHR"/> */}
           {/* <Tab label="Nutrition"/> */}
         </Tabs>
       </Paper>

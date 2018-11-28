@@ -6,10 +6,9 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
 
 
-class Landing extends Component {
+class Landing extends Component {    
     render() {
       return (
         <div className="Landing">
@@ -43,15 +42,13 @@ class Landing extends Component {
                     </TableBody>
                 </TableHead>    
             </Table>                  
-        </Paper>
-        {/* button links to New Entry form page */}
-        <Button variant="contained" color="primary">
-        New Entry
-      </Button>
+        </Paper>        
         </div>     
     </div>
       );
     }
   }
+
+
   
   export default Landing;
