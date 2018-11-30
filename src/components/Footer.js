@@ -7,6 +7,16 @@ import {Link} from 'react-router-dom';
 
 
 class Footer extends Component {
+
+  //need to fixed link underline when each tab is clicked
+    state = {
+      value: 0,
+    };
+
+    handleChange=(event, value) => {
+      this.setState({value});
+    }
+
     render() {
       return (
         <div className="Footer">
@@ -19,7 +29,8 @@ class Footer extends Component {
           centered
         >
           {/* <Tab label="New Entries" /> */}
-          <Tab label="New Entry" component={Link} to="NewFormEntry"/>          
+          <Tab label="Home" component={Link} to="/"/>
+          <Tab label="New Entry" component={Link} to="NewEntryForm"/>          
           <Tab label="Progress" component={Link} to="Progress"/>
           {/* <Tab label="RHR" component={Link} to="RHR"/> */}
           {/* <Tab label="Nutrition"/> */}

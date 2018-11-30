@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
 import Main from './components/Main';
-import NewEntryForm from './components/NewEntryForm';
+
 
 class App extends Component {
   render() {
