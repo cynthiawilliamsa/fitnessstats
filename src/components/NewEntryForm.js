@@ -8,6 +8,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import Grid from "@material-ui/core/Grid";
 import FormControl from "@material-ui/core/FormControl"
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   root: {
@@ -169,8 +170,16 @@ function NewEntryForm(props) {
           />
           </Paper>
         </Grid>
+        <Button
+    style={{paddingTop:"1em", paddingBottom:"1em" }}
+    size="medium"
+    color="primary"
+    variant="contained"
+    >Submit</Button>    
+
       </Grid>
-    </div>
+      </div>
+    
   );
 }
 
@@ -179,50 +188,3 @@ NewEntryForm.propTypes = {
 };
 
 export default withStyles(styles)(NewEntryForm);
-
-
-
-// class NewEntryForm extends Component {
-//     render() {
-//       return (
-//         <div className="NewEntry" height="700" marginLeft="auto" marginRight="auto">
-//           <h2 style={{textAlign: 'center', margin: '0', color: "black"}}>Let's Enter your new stats, Cynthia!</h2>
-
-
-         
-        {/* <Grid container spacing={16}>
-        <FormGroup style={{width: "100%", marginLeft: "auto", marginRight: 'auto', padding: '2em'}}>
-        <Grid container justify="center" item xs={12}>
-        <FormLabel>Gender</FormLabel>
-          <TextField/>
-          <FormLabel>Age</FormLabel>
-          <TextField/>  
-          </Grid> 
-          <Grid container justify="center" item xs={12} sm={6}>      
-          <FormLabel>Height</FormLabel>
-          <TextField/>          
-          <FormLabel>Height</FormLabel>
-          <TextField/>
-          </Grid> 
-          <FormLabel>Weight</FormLabel>
-          <TextField/>
-          <FormLabel>Body Fat</FormLabel>
-          <TextField/>
-          <FormLabel>Arms</FormLabel>
-          <TextField/>
-          <FormLabel>Chest</FormLabel>
-          <TextField/>
-          <FormLabel>Waist</FormLabel>
-          <TextField/>
-          <FormLabel>Hips</FormLabel>
-          <TextField/>
-          <FormLabel>Thighs</FormLabel>
-          <TextField/>
-        </FormGroup>
-        </Grid> */}
-  //     </div> 
-  //     );
-  //   }
-  // }
-  
-  // export default NewEntryForm;
