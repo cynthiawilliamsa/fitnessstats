@@ -8,8 +8,8 @@ import Progress from './Progress';
 const Main = () => (
     <Switch>
         <Route exact path="/" component={Landing}/>
-        <Route exact path="/NewEntryForm" component={NewEntryForm}/>
-        <Route exact path="/Progress" component={Progress}/>
+        <Route exact path="/newentryform" component={NewEntryForm}/>
+        <Route exact path="/progress" component={Progress}/>
     </Switch>
 );
 export default Main;

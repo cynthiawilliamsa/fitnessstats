@@ -30,10 +30,8 @@ class Footer extends Component {
         >
           {/* <Tab label="New Entries" /> */}
           <Tab label="Home" component={Link} to="/"/>
-          <Tab label="New Entry" component={Link} to="NewEntryForm"/>          
-          <Tab label="Progress" component={Link} to="Progress"/>
-          {/* <Tab label="RHR" component={Link} to="RHR"/> */}
-          {/* <Tab label="Nutrition"/> */}
+          <Tab label="New Entry" component={Link} to="newentryform"/>          
+          <Tab label="Progress" component={Link} to="progress"/>         
         </Tabs>
       </Paper>
       
