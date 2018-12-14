@@ -51,6 +51,53 @@ class NewEntryForm extends Component {
     console.log(e.target.value)
     this.setState({age: e.target.value});
   }
+  handleHeightChange = (e) => {
+    console.log(e.target.value)
+    this.setState({height: e.target.value});
+  }
+  handleWeightChange =(e) => {
+    console.log(e.target.value)
+    this.setState({weight: e.target.value});
+  }
+  handleBodyFatChange = (e) => {
+    console.log(e.target.value)
+    this.setState({bodyFat: e.target.value});    
+  }
+  handleBicepRChange = (e) => {
+    console.log(e.target.value);
+    this.setState({bicepR: e.target.value});
+  }
+  handleChestChange = (e) => {
+    console.log(e.target.value);
+    this.setState({chest: e.target.value});
+  }
+  handleLeanMassChange = (e) => {
+    console.log(e.target.value);
+    this.setState({leanMass: e.target.value});
+  }
+  handleWaistChange = (e) => {
+    console.log(e.target.value);
+    this.setState({waist: e.target.value});
+  }
+  handleThighRChange = (e) => {
+    console.log(e.target.value);
+    this.setState({thighR: e.target.value})
+  }
+  handleBicepLChange = (e) => {
+    console.log(e.target.value);
+    this.setState({bicepL: e.target.value});
+  }
+  handleHipsChange = (e)=> {
+    console.log(e.target.value);
+    this.setState({hips: e.target.value});
+  }
+  handleThighLChange = (e) => {
+    console.log(e.target.value);
+    this.setState({thighL: e.target.value});
+  }
+
+  
+
   handleSubmit = (e) => {
     console.log(this.state)
   }
@@ -58,7 +105,7 @@ class NewEntryForm extends Component {
   render (){  
 
   const {classes} = this.props
-
+  
    return( 
     <div className={classes.root}>
     <form >
@@ -75,7 +122,7 @@ class NewEntryForm extends Component {
                 value={this.state.gender}                       
               />        
               <TextField
-               onChange={this.handleAgeChange}
+                onChange={this.handleAgeChange}
                 className={classes.textField}
                 label="Age"
                 name="age"
@@ -83,98 +130,109 @@ class NewEntryForm extends Component {
                 value={this.state.age}
               />                  
           </Grid>
-            <Grid item xs={12} sm={6}>                     
+            <Grid item xs={12} sm={6}>                 
               <TextField 
+                onChange={this.handleHeightChange}
                 className={classes.textField}
                 label="Height"
                 name="height"
                 variant="outlined"
               />
               <TextField
+                onChange ={this.handleWeightChange}
                 className={classes.textField}
-                label="weight"
+                label="Weight"
                 name="weight"
                 variant="outlined"
               />           
             </Grid>
             <Grid item xs={12} sm={6}>           
               <TextField
-              className={classes.textField}
-              label="Body Fat"
-              name="bodyFat"
-              variant="outlined"
+                onChange = {this.handleBodyFatChange}
+                className={classes.textField}
+                label="Body Fat"
+                name="bodyFat"
+                variant="outlined"
               />
               <TextField
-              className={classes.textField}
-              label="Lean Mass"
-              name="leanMass"
-              variant="outlined"
+                className={classes.textField}
+                onChange = {this.handleLeanMassChange}
+                label="Lean Mass"
+                name="leanMass"
+                variant="outlined"
               />            
             </Grid>        
-            <Grid item xs={6} sm={3}>
-                    
+            <Grid item xs={6} sm={3}>                    
               <TextField
-              className={classes.textField}
-              label="Bicep L"
-              name="bicepL"        
-              variant="outlined"
+                className={classes.textField}
+                onChange={this.handleBicepRChange}
+                label="Bicep R"
+                name="bicepR"        
+                variant="outlined"
               />
             </Grid>
             <Grid item xs={6} sm={3}>            
               <TextField
-              className={classes.textField}
-              label="Chest"
-              name="chest"            
-              variant="outlined"
+                className={classes.textField}
+                onChange={this.handleChestChange}
+                label="Chest"
+                name="chest"            
+                variant="outlined"
               />        
             </Grid>
             <Grid item xs={6} sm={3}>           
               <TextField
-              className={classes.textField}
-              label="Waist"
-              name="waist"
-              variant="outlined"
+                className={classes.textField}
+                onChange = {this.handleWaistChange}
+                label="Waist"
+                name="waist"
+                variant="outlined"
               />           
             </Grid>
             <Grid item xs={6} sm={3}>            
               <TextField
-              className={classes.textField}
-              label="Thigh R"
-              name="thighR"
+                className={classes.textField}
+                onChange = {this.handleThighRChange}
+                label="Thigh R"
+                name="thighR"
+                variant="outlined"
 
               variant="outlined"
               />           
             </Grid>
             <Grid item xs={6} sm={3}>           
               <TextField
-              className={classes.textField}
-              label="Bicep L"
-              name="bicepL"
-              variant="outlined"
+                className={classes.textField}
+                onChange = {this.handleBicepLChange}
+                label="Bicep L"
+                name="bicepL"
+                variant="outlined"
               />
             </Grid>
             <Grid item xs={6} sm={3}>           
               <TextField
-              className={classes.textField}
-              label="Neck"
-              name="neck"
-              variant="outlined"
+                className={classes.textField}
+                label="Neck"
+                name="neck"
+                variant="outlined"
               />
             </Grid>
             <Grid item xs={6} sm={3}>            
               <TextField
-              className={classes.textField}
-              label="Hips"
-              name="hips"            
-              variant="outlined"
+                className={classes.textField}
+                onChange = {this.handleHipsChange}
+                label="Hips"
+                name="hips"            
+                variant="outlined"
               />
             </Grid>
             <Grid item xs={6} sm={3}>
               <TextField
-              className={classes.textField}
-              label="Thigh L"
-              name="thighL"
-              variant="outlined"
+                className={classes.textField}
+                onChange ={this.handleThighLChange}
+                label="Thigh L"
+                name="thighL"
+                variant="outlined"
               />
             </Grid>        
           <button
