@@ -1,9 +1,11 @@
 let express = require("express");
 let bodyParser= require('body-parser');
+const nefr = require('./routes/newEntryFormRoutes')
 
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use(nefr)
 
 let mongoose = require("mongoose");
 mongoose.Promise=global.Promise;

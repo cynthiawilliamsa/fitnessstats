@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-const schema = new mongooose.Schema({
+const schema = new mongoose.Schema({
     gender: {
         type: String
     },

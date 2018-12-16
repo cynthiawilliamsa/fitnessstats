@@ -9,3 +9,5 @@ router.put('/newentry/:id', update);
 router.delete('/newentry/:id', remove);
 
 module.exports = router;
+
+
