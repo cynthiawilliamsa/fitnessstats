@@ -5,8 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import '../App.css';
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Button from '@material-ui/core/Button';
-import { Mongoose } from 'mongoose';
 
 const styles = theme => ({
   root: {
@@ -100,7 +98,11 @@ class NewEntryForm extends Component {
   
 
   handleSubmit = (e) => {
-    console.log(this.state)
+    e.preventDefault();
+    if (this.props.createNewEntry) {
+      this.props.createNewEntry(this.state.NewEntryForm);
+      
+    }
   }
 
   render (){  
@@ -242,7 +244,8 @@ class NewEntryForm extends Component {
             color="primary"
             variant="contained"
             value="Submit"
-            onSubmit={this.handleSubmit()}            
+            name='action'
+            onSubmit={this.handleSubmit}
             >Submit
           </button>       
       </Grid>
