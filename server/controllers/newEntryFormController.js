@@ -14,6 +14,7 @@ module.exports.show =  function show(request, response) {
    }
 
    module.exports.create =  function create(request, response) {
+       console.log(request.body)
     const v = new newEntryFormModel({
         gender: request.body.gender,
         age: request.body.age,
@@ -32,8 +33,10 @@ module.exports.show =  function show(request, response) {
     });
     
     v.save().then(savedEntry => {
-        console.log(savedEntry);
+        console.log(savedEntry); 
+        response.status(200).send(JSON.stringify(savedEntry))
     });
+   
    }
    module.exports.update =  function update(request, response) {
     return response.json({theId: request.params.id});

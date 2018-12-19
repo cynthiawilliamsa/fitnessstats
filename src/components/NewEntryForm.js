@@ -43,75 +43,102 @@ class NewEntryForm extends Component {
       thighL: ""
   }
   handleGenderChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     this.setState({gender: e.target.value});
   }
   handleAgeChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     this.setState({age: e.target.value});
   }
   handleHeightChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     this.setState({height: e.target.value});
   }
   handleWeightChange =(e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     this.setState({weight: e.target.value});
   }
   handleBodyFatChange = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     this.setState({bodyFat: e.target.value});    
   }
   handleBicepRChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({bicepR: e.target.value});
   }
   handleChestChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({chest: e.target.value});
   }
   handleLeanMassChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({leanMass: e.target.value});
   }
   handleWaistChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({waist: e.target.value});
   }
   handleThighRChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({thighR: e.target.value})
   }
   handleBicepLChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({bicepL: e.target.value});
   }
   handleHipsChange = (e)=> {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({hips: e.target.value});
   }
   handleThighLChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     this.setState({thighL: e.target.value});
   }
-
-  
-
-  handleSubmit = (e) => {
+  handleSubmit = (e)=> {
+    //prevents refresh
     e.preventDefault();
-    if (this.props.createNewEntry) {
-      this.props.createNewEntry(this.state.NewEntryForm);
-      
-    }
-  }
+    //JSON object for fetch send to server  
+    fetch('http://localhost:3002/newentry', {  
+      method: 'POST', 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        gender: e.target.elements.gender.value,
+        age: e.target.elements.age.value,
+        height: e.target.elements.height.value,
+        weight: e.target.elements.weight.value,
+        bodyFat: e.target.elements.bodyFat.value,
+        leanMass: e.target.elements.leanMass.value,
+        bicepR: e.target.elements.bicepR.value,
+        chest: e.target.elements.chest.value,
+        waist: e.target.elements.waist.value,
+        thighR: e.target.elements.thighR.value,
+        bicepL: e.target.elements.bicepL.value,
+        neck: e.target.elements.neck.value,
+        hips: e.target.elements.hips.value,
+        thighL: e.target.elements.thighL.value
+    })
+  })
+  .then(function (data) {  
+    console.log('Request success: ', data);  
+  })  
+  .catch(function (error) {  
+    console.log('Request failure: ', error);  
+  });       
+
+  // console.log(newEntry);
+}
 
   render (){  
 
   const {classes} = this.props
-  
+  // const host = process.env.LOCAL_ENV || ""
+  // const endpoint=`${host}/newentry`
    return( 
     <div className={classes.root}>
-    <form >
+    <form onSubmit={this.handleSubmit}>
     <Paper className={classes.paper}> 
         <h2>Enter Stats Below and Submit to Save:</h2>
         <Grid container spacing={24} style={{width:"80%", marginLeft:"auto", marginRight:"auto"}}>
@@ -199,8 +226,6 @@ class NewEntryForm extends Component {
                 label="Thigh R"
                 name="thighR"
                 variant="outlined"
-
-              variant="outlined"
               />           
             </Grid>
             <Grid item xs={6} sm={3}>           
@@ -238,14 +263,8 @@ class NewEntryForm extends Component {
                 variant="outlined"
               />
             </Grid>        
-          <button
-            style={{paddingTop:"1em", paddingBottom:"1em" }}
-            size="medium"
-            color="primary"
-            variant="contained"
-            value="Submit"
-            name='action'
-            onSubmit={this.handleSubmit}
+          <button 
+            type="submit" 
             >Submit
           </button>       
       </Grid>
