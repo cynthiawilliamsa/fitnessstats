@@ -13,34 +13,34 @@ const schema = new mongoose.Schema({
         type: String
     },
     bodyFat: {
-        type: Number
+        type: String
     },
     leanMass: {
-        type: Number
+        type: String
     },
     bicepR: {
-        type: Number
+        type: String
     },
     chest: {
-        type: Number
+        type: String
     },
     waist: {
-        type: Number
+        type: String
     },
     thighR: {
-        type: Number
+        type: String
     },
     bicepL: {
-        type: Number
+        type: String
     },
     neck: {
-        type: Number
+        type: String
     },
     hips: {
-        type: Number
+        type: String
     },
     thighL: {
-        type: Number
+        type: String
     }
 });
 

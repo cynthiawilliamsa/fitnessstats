@@ -122,13 +122,16 @@ class NewEntryForm extends Component {
     })
   })
   .then(function (data) {  
+    alert("Form Submitted");
+    document.querySelector(".form").reset();
+
     console.log('Request success: ', data);  
   })  
   .catch(function (error) {  
     console.log('Request failure: ', error);  
   });       
 
-  // console.log(newEntry);
+  
 }
 
   render (){  
@@ -138,7 +141,7 @@ class NewEntryForm extends Component {
   // const endpoint=`${host}/newentry`
    return( 
     <div className={classes.root}>
-    <form onSubmit={this.handleSubmit}>
+    <form onSubmit={this.handleSubmit} className="form">
     <Paper className={classes.paper}> 
         <h2>Enter Stats Below and Submit to Save:</h2>
         <Grid container spacing={24} style={{width:"80%", marginLeft:"auto", marginRight:"auto"}}>
@@ -149,7 +152,7 @@ class NewEntryForm extends Component {
                 label="Gender"
                 name="gender"
                 variant="outlined"
-                value={this.state.gender}                       
+                // value={this.state.gender}                       
               />        
               <TextField
                 onChange={this.handleAgeChange}
@@ -157,7 +160,7 @@ class NewEntryForm extends Component {
                 label="Age"
                 name="age"
                 variant="outlined"
-                value={this.state.age}
+                // value={this.state.age}
               />                  
           </Grid>
             <Grid item xs={12} sm={6}>                 
