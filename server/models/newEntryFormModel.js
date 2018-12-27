@@ -1,46 +1,60 @@
 let mongoose = require('mongoose');
 const schema = new mongoose.Schema({
     gender: {
-        type: String
+        type: String,
+        required: true
     },
     age: {
-        type: Number
+        type: Number,
+        required: true
     },
     height: {
-        type: String
+        type: String,
+        required: true
     },
     weight: {
-        type: String
+        type: String,
+        required: true
     },
     bodyFat: {
-        type: Number
+        type: String,
+        required: true
     },
     leanMass: {
-        type: Number
+        type: String,
+        required: true
     },
     bicepR: {
-        type: Number
+        type: String,
+        required: true
     },
     chest: {
-        type: Number
+        type: String,
+        required: true
     },
     waist: {
-        type: Number
+        type: String,
+        required: true
     },
     thighR: {
-        type: Number
+        type: String,
+        required: true
     },
     bicepL: {
-        type: Number
+        type: String,
+        required: true
     },
     neck: {
-        type: Number
+        type: String,
+        required: true
     },
     hips: {
-        type: Number
+        type: String,
+        required: true
     },
     thighL: {
-        type: Number
+        type: String,
+        required: true
     }
 });
 
