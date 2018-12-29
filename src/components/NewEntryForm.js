@@ -45,35 +45,146 @@ const genders = [
 ];
 
 class NewEntryForm extends Component {
-
   state = {
       gender: "",
+      //error associated with this field
+      genderError: "",
       age: "",
+      ageError: "",
       height: "",
+      heightError: "",
       weight: "",
+      weightError: "",
+      bodyFat: "",
+      bodyFatError: "",
+      leanMass: "",
+      leanMassError: "",
       bicepR: "",
+      bicepRError: "",
       bicepL: "",
+      bicepLError: "",
       chest: "",
+      chestError: "",
       neck: "",
+      neckError: "",
       waist: "",
+      waistError: "",
       hips: "",
+      hipsError: "",
       thighR: "",
-      thighL: ""
+      thighRError: "",
+      thighL: "",
+      thighLError: "",
   }
-  handleChange = prop => event => {
-    const changeProp = event.target.value;
-    if(isNaN(changeProp) || changeProp >=3) {
-      inputProps={{
-        errorText=(`${[prop]} must be a number and less than 3.`)
-      }}
+  handleChange = prop => e => {  
+    console.log(this.state.age)
     
+    let isError = false;
+    const errors = {
+      genderError: "",
+      ageError: "",
+      weightError: "",
+      heightError: "", 
+      bodyFatError: "",
+      leanMassError: "",
+      bicepRError: "", 
+      chestError: "",
+      waistError: "",
+      thighRError: "",
+      bicepLError: "",
+      neckError: "",
+      hipsError: "",
+      thighLError: "",
+    };
+    if(this.state.age.length > 2) {
+      isError = true;
+      errors.ageError = 'age must be entered and less than 2 characters.'
+      console.log(errors.ageError);
     }
-    this.setState({ [prop]: event.target.value });
-  };
+    this.setState({[prop]: e.target.value }); 
+    // this.setState({
+    //   ...this.state,
+    //   ...errors
+    // {someptop1,somepro2,somehinelse: value}
+    // });
+
+    return isError;
+  } 
+  
+  // validate = () =>{
+  //   let isError = false;
+  //   const errors = {
+  //     genderError: "",
+  //     ageError: "",
+  //     weightError: "",
+  //     heightError: "", 
+  //     bodyFatError: "",
+  //     leanMassError: "",
+  //     bicepRError: "", 
+  //     chestError: "",
+  //     waistError: "",
+  //     thighRError: "",
+  //     bicepLError: "",
+  //     neckError: "",
+  //     hipsError: "",
+  //     thighLError: "",
+  //   };
+  //   if(this.state.age.length > 2) {
+  //     isError = true;
+  //     errors.ageError = 'age must be entered and less than 2 characters.'
+  //     console.log(errors.ageError);
+  //   }
+
+  //   this.setState({
+  //     ...this.state,
+  //     ...errors
+  //   });
+
+  //   return isError;
+  // }
 
   handleSubmit = (e)=> {
     //prevents refresh
     e.preventDefault();
+    const err = this.validate();
+    if (!err) {
+      //enable submit
+      const button = document.getElementById('button');
+      button.disabled = false;
+      //clear form
+      this.setState({
+        gender: "",
+      //error associated with this field
+      genderError: "",
+      age: "",
+      ageError: "",
+      height: "",
+      heightError: "",
+      weight: "",
+      weightError: "",
+      bodyFat: "",
+      bodyFatError: "",
+      leanMass: "",
+      leanMassError: "",
+      bicepR: "",
+      bicepRError: "",
+      bicepL: "",
+      bicepLError: "",
+      chest: "",
+      chestError: "",
+      neck: "",
+      neckError: "",
+      waist: "",
+      waistError: "",
+      hips: "",
+      hipsError: "",
+      thighR: "",
+      thighRError: "",
+      thighL: "",
+      thighLError: "",
+      });
+     
+    }
     //JSON object for fetch send to server  
     fetch('http://localhost:3002/newentry', {  
       method: 'POST', 
@@ -82,7 +193,7 @@ class NewEntryForm extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        gender: e.target.elements.gender.value,
+        // gender: e.target.elements.gender.value,
         age: e.target.elements.age.value,
         height: e.target.elements.height.value,
         weight: e.target.elements.weight.value,
@@ -141,9 +252,12 @@ class NewEntryForm extends Component {
         </TextField>
               <TextField
                 onChange={this.handleChange('age')}
+                // helperText={this.state.ageError}
                 className={classes.textField}
                 label="Age"
                 name="age"
+                error={this.state.ageError.length > 0} 
+                helperText={this.state.ageError || ""}           
                 variant="outlined"
                 value={this.state.age}
               />                  
@@ -151,6 +265,7 @@ class NewEntryForm extends Component {
             <Grid item xs={12} sm={6}>                 
               <TextField 
                 onChange={this.handleChange('height')}
+                // helperText={this.state.heightError}
                 className={classes.textField}
                 label="Height"
                 name="height"
@@ -167,6 +282,7 @@ class NewEntryForm extends Component {
               />
               <TextField
                 onChange ={this.handleChange('weight')}
+                // helperText={this.state.weightError}
                 className={classes.textField}
                 label="Weight"
                 name="weight"
@@ -184,6 +300,7 @@ class NewEntryForm extends Component {
             <Grid item xs={12} sm={6}>           
               <TextField
                 onChange = {this.handleChange('bodyFat')}
+                helperText={this.state.bodyFatError}
                 className={classes.textField}
                 label="Body Fat"
                 name="bodyFat"
@@ -200,6 +317,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange = {this.handleChange('leanMass')}
+                helperText={this.state.leanMassError}
                 label="Lean Mass"
                 name="leanMass"
                 variant="outlined"
@@ -217,6 +335,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange={this.handleChange('bicepR')}
+                helperText={this.state.bicepRError}
                 label="Bicep R"
                 name="bicepR"        
                 variant="outlined"
@@ -234,6 +353,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange={this.handleChange('chest')}
+                helperText={this.state.chestError}
                 label="Chest"
                 name="chest"            
                 variant="outlined"
@@ -251,6 +371,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange = {this.handleChange('waist')}
+                helperText={this.state.waistError}
                 label="Waist"
                 name="waist"
                 variant="outlined"
@@ -268,6 +389,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange = {this.handleChange('thighR')}
+                helperText={this.state.thighRError}
                 label="Thigh R"
                 name="thighR"
                 variant="outlined"
@@ -285,6 +407,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange = {this.handleChange('bicepL')}
+                helperText={this.state.bicepLError}
                 label="Bicep L"
                 name="bicepL"
                 variant="outlined"
@@ -302,6 +425,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange = {this.handleChange('neck')}
+                helperText={this.state.neckError}
                 label="Neck"
                 name="neck"
                 variant="outlined"
@@ -319,6 +443,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange = {this.handleChange('hips')}
+                helperText={this.state.hipsError}
                 label="Hips"
                 name="hips"            
                 variant="outlined"
@@ -336,6 +461,7 @@ class NewEntryForm extends Component {
               <TextField
                 className={classes.textField}
                 onChange ={this.handleChange('thighL')}
+                helperText={this.state.thighLError}
                 label="Thigh L"
                 name="thighL"
                 variant="outlined"
