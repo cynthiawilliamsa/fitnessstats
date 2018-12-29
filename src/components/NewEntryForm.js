@@ -92,9 +92,9 @@ class NewEntryForm extends Component {
     thighL: "",
     thighLError: ""
   };
-  handleChange = prop => ({ target: { name, value } }) => {
+  handleChange =  ({ target: { name, value } }) => {
     let errors = {};
-    switch (prop) {
+    switch (name) {
       case "age":
         errors = ageValidation(value, errors);
         break;
@@ -112,38 +112,6 @@ class NewEntryForm extends Component {
       [name]: value
     });
   };
-
-  // validate = () =>{
-  //   let isError = false;
-  //   const errors = {
-  //     genderError: "",
-  //     ageError: "",
-  //     weightError: "",
-  //     heightError: "",
-  //     bodyFatError: "",
-  //     leanMassError: "",
-  //     bicepRError: "",
-  //     chestError: "",
-  //     waistError: "",
-  //     thighRError: "",
-  //     bicepLError: "",
-  //     neckError: "",
-  //     hipsError: "",
-  //     thighLError: "",
-  //   };
-  //   if(this.state.age.length > 2) {
-  //     isError = true;
-  //     errors.ageError = 'age must be entered and less than 2 characters.'
-  //     console.log(errors.ageError);
-  //   }
-
-  //   this.setState({
-  //     ...this.state,
-  //     ...errors
-  //   });
-
-  //   return isError;
-  // }
 
   handleSubmit = e => {
     //prevents refresh
@@ -238,7 +206,7 @@ class NewEntryForm extends Component {
                   // label="Gender"
                   className={classes.textField}
                   value={this.state.gender}
-                  onChange={this.handleChange("gender")}
+                  onChange={this.handleChange}
                   SelectProps={{
                     native: true,
                     MenuProps: {
@@ -255,28 +223,24 @@ class NewEntryForm extends Component {
                   ))}
                 </TextField>
                 <TextField
-                  onChange={this.handleChange("age")}
-                  // helperText={this.state.ageError}
+                  onChange={this.handleChange}
                   className={classes.textField}
                   label="Age"
                   name="age"
                   error={this.state.ageError.length > 0}
                   helperText={this.state.ageError || ""}
                   variant="outlined"
-                  // value={this.state.age}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  onChange={this.handleChange("height")}
-                  // helperText={this.state.heightError}
+                  onChange={this.handleChange}
                   className={classes.textField}
                   label="Height"
                   name="height"
                   variant="outlined"
                   error={this.state.heightError.length > 0}
                   helperText={this.state.heightError || ""}
-                  // value={this.state.height}
                   InputProps={{
                     maxLength: 3,
                     endAdornment: (
@@ -285,8 +249,7 @@ class NewEntryForm extends Component {
                   }}
                 />
                 <TextField
-                  onChange={this.handleChange("weight")}
-                  // helperText={this.state.weightError}
+                  onChange={this.handleChange}
                   className={classes.textField}
                   label="Weight"
                   name="weight"
@@ -301,7 +264,7 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  onChange={this.handleChange("bodyFat")}
+                  onChange={this.handleChange}
                   helperText={this.state.bodyFatError}
                   className={classes.textField}
                   label="Body Fat"
@@ -316,7 +279,7 @@ class NewEntryForm extends Component {
                 />
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("leanMass")}
+                  onChange={this.handleChange}
                   helperText={this.state.leanMassError}
                   label="Lean Mass"
                   name="leanMass"
@@ -332,7 +295,7 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("bicepR")}
+                  onChange={this.handleChange}
                   helperText={this.state.bicepRError}
                   label="Bicep R"
                   name="bicepR"
@@ -348,7 +311,7 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("chest")}
+                  onChange={this.handleChange}
                   helperText={this.state.chestError}
                   label="Chest"
                   name="chest"
@@ -364,7 +327,7 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("waist")}
+                  onChange={this.handleChange}
                   helperText={this.state.waistError}
                   label="Waist"
                   name="waist"
@@ -380,7 +343,7 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("thighR")}
+                  onChange={this.handleChange}
                   helperText={this.state.thighRError}
                   label="Thigh R"
                   name="thighR"
@@ -396,7 +359,7 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("bicepL")}
+                  onChange={this.handleChange}
                   helperText={this.state.bicepLError}
                   label="Bicep L"
                   name="bicepL"
@@ -412,7 +375,7 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("neck")}
+                  onChange={this.handleChange}
                   helperText={this.state.neckError}
                   label="Neck"
                   name="neck"
@@ -428,7 +391,7 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("hips")}
+                  onChange={this.handleChange}
                   helperText={this.state.hipsError}
                   label="Hips"
                   name="hips"
@@ -444,7 +407,7 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange("thighL")}
+                  onChange={this.handleChange}
                   helperText={this.state.thighLError}
                   label="Thigh L"
                   name="thighL"
