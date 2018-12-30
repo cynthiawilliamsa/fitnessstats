@@ -133,7 +133,10 @@ class NewEntryForm extends Component {
         errors = thighLValidation(value, errors);
         break;
       default:
-        console.log("hi");
+        if(!errors){
+          const button = document.getElementById('button');
+          button.disabled=false
+        }
         break;
     }
 
@@ -147,11 +150,8 @@ class NewEntryForm extends Component {
   handleSubmit = e => {
     //prevents refresh
     e.preventDefault();
-    const err = this.validate();
-    if (!err) {
-      //enable submit
-      const button = document.getElementById("button");
-      button.disabled = false;
+    // const err = this.validate();
+      
       //clear form
       this.setState({
         gender: "",
@@ -184,7 +184,7 @@ class NewEntryForm extends Component {
         thighL: "",
         thighLError: ""
       });
-    }
+    
     //JSON object for fetch send to server
     fetch("http://localhost:3002/newentry", {
       method: "POST",
@@ -254,6 +254,8 @@ class NewEntryForm extends Component {
                   ))}
                 </TextField>
                 <TextField
+                  required
+                  type='number'
                   onChange={this.handleChange}
                   className={classes.textField}
                   label="Age"
@@ -265,6 +267,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  required
+                  type='number'
                   onChange={this.handleChange}
                   className={classes.textField}
                   label="Height"
@@ -280,6 +284,8 @@ class NewEntryForm extends Component {
                   }}
                 />
                 <TextField
+                  required
+                  type='number'
                   onChange={this.handleChange}
                   className={classes.textField}
                   label="Weight"
@@ -296,6 +302,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  required
+                  type='number'
                   onChange={this.handleChange}
                   className={classes.textField}
                   label="Body Fat"
@@ -310,6 +318,8 @@ class NewEntryForm extends Component {
                   }}
                 />
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}
                   label="Lean Mass"
@@ -326,6 +336,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}
                   label="Bicep R"
@@ -342,6 +354,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}                 
                   label="Chest"
@@ -358,6 +372,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}
                   label="Waist"
@@ -374,6 +390,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}
                   label="Thigh R"
@@ -390,6 +408,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}
                   label="Bicep L"
@@ -405,6 +425,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}
                   label="Neck"
@@ -420,6 +442,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}
                   label="Hips"
@@ -435,6 +459,8 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={6} sm={3}>
                 <TextField
+                  required
+                  type='number'
                   className={classes.textField}
                   onChange={this.handleChange}
                   label="Thigh L"
