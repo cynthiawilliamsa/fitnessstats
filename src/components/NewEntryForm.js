@@ -12,7 +12,8 @@ import {
   weightValidation,
   bodyFatValidation,
   leanMassValidation,
-  bicepRValidation
+  bicepRValidation,
+  chestValidation
 } from "./formValidation";
 
 const styles = theme => ({
@@ -103,6 +104,9 @@ class NewEntryForm extends Component {
         break;
       case "bicepR":
         errors = bicepRValidation(value, errors);
+        break;
+      case "chest":
+        errors = chestValidation(value, errors);
         break;
       default:
         console.log("hi");
@@ -315,12 +319,12 @@ class NewEntryForm extends Component {
               <Grid item xs={6} sm={3}>
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange}
-                  helperText={this.state.chestError}
+                  onChange={this.handleChange}                 
                   label="Chest"
                   name="chest"
                   variant="outlined"
-                  value={this.state.chest}
+                  helperText={this.state.chestError || ""}
+                  error={this.state.chestError.length > 0}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">in</InputAdornment>
