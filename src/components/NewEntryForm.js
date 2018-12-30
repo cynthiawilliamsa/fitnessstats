@@ -6,6 +6,7 @@ import "../App.css";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
+import PickerDate from './datePicker';
 import {
   genderValidation,
   ageValidation,
@@ -38,7 +39,7 @@ const styles = theme => ({
   },
   textField: {
     padding: "4px",
-    height: "40px"
+    height: "35px"
   },
   menu: {
     width: "80%"
@@ -225,6 +226,7 @@ class NewEntryForm extends Component {
         <form onSubmit={this.handleSubmit} id="form">
           <Paper className={classes.paper}>
             <h2>Enter Stats Below and Submit to Save:</h2>
+            <h3><PickerDate/></h3>
             <Grid
               container
               spacing={24}
