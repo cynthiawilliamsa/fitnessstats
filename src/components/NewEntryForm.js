@@ -14,7 +14,8 @@ import {
   leanMassValidation,
   bicepRValidation,
   chestValidation,
-  waistValidation
+  waistValidation,
+  thighRValidation
 } from "./formValidation";
 
 const styles = theme => ({
@@ -111,6 +112,9 @@ class NewEntryForm extends Component {
         break;
       case "waist":
         errors = waistValidation(value,errors);
+        break;
+      case "thighR":
+        errors = thighRValidation(value, errors);
         break;
       default:
         console.log("hi");
@@ -356,11 +360,11 @@ class NewEntryForm extends Component {
                 <TextField
                   className={classes.textField}
                   onChange={this.handleChange}
-                  helperText={this.state.thighRError}
                   label="Thigh R"
                   name="thighR"
                   variant="outlined"
-                  value={this.state.thighR}
+                  helperText={this.state.thighRError || ""}
+                  error={this.state.thighRError.length > 0}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">in</InputAdornment>
