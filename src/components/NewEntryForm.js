@@ -6,7 +6,7 @@ import "../App.css";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
-import {ageValidation, heightValidation, weightValidation, bodyFatValidation} from './formValidation';
+import {ageValidation, heightValidation, weightValidation, bodyFatValidation, leanMassValidation} from './formValidation';
 
 const styles = theme => ({
   root: {
@@ -90,6 +90,9 @@ class NewEntryForm extends Component {
         break;
         case "bodyFat":
         errors = bodyFatValidation(value, errors);
+        break;
+        case "leanMass":
+        errors = leanMassValidation(value, errors);
         break;
       default: 
         console.log('hi');
@@ -255,8 +258,7 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  onChange={this.handleChange}
-                  helperText={this.state.bodyFatError}
+                  onChange={this.handleChange}                  
                   className={classes.textField}
                   label="Body Fat"
                   name="bodyFat"
@@ -271,12 +273,12 @@ class NewEntryForm extends Component {
                 />
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange}
-                  helperText={this.state.leanMassError}
+                  onChange={this.handleChange}                  
                   label="Lean Mass"
                   name="leanMass"
                   variant="outlined"
-                  value={this.state.leanMass}
+                  helperText={this.state.leanMassError || ""}
+                  error={this.state.leanMassError.length > 0}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">lb</InputAdornment>
