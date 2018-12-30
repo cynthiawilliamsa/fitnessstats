@@ -16,7 +16,8 @@ import {
   chestValidation,
   waistValidation,
   thighRValidation,
-  bicepLValidation
+  bicepLValidation,
+  neckValidation
 } from "./formValidation";
 
 const styles = theme => ({
@@ -119,6 +120,9 @@ class NewEntryForm extends Component {
         break;
       case "bicepL":
         errors = bicepLValidation(value, errors);
+        break;
+      case "neck":
+        errors = neckValidation(value, errors);
         break;
       default:
         console.log("hi");
@@ -395,12 +399,11 @@ class NewEntryForm extends Component {
                 <TextField
                   className={classes.textField}
                   onChange={this.handleChange}
-                  helperText={this.state.neckError}
                   label="Neck"
                   name="neck"
                   variant="outlined"
-                  value={this.state.neck}
-                  InputProps={{
+                  helperText={this.state.neckError || ""}
+                  error={this.state.neckError.length > 0}                    InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">in</InputAdornment>
                     )
