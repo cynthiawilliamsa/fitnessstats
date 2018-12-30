@@ -13,7 +13,8 @@ import {
   bodyFatValidation,
   leanMassValidation,
   bicepRValidation,
-  chestValidation
+  chestValidation,
+  waistValidation
 } from "./formValidation";
 
 const styles = theme => ({
@@ -107,6 +108,9 @@ class NewEntryForm extends Component {
         break;
       case "chest":
         errors = chestValidation(value, errors);
+        break;
+      case "waist":
+        errors = waistValidation(value,errors);
         break;
       default:
         console.log("hi");
@@ -336,11 +340,11 @@ class NewEntryForm extends Component {
                 <TextField
                   className={classes.textField}
                   onChange={this.handleChange}
-                  helperText={this.state.waistError}
                   label="Waist"
                   name="waist"
                   variant="outlined"
-                  value={this.state.waist}
+                  helperText={this.state.waistError || ""}
+                  error={this.state.waistError.length > 0}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">in</InputAdornment>
