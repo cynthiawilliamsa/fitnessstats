@@ -8,6 +8,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
 import PickerDate from './datePicker';
 import {
+  dateValidation,
   genderValidation,
   ageValidation,
   heightValidation,
@@ -38,7 +39,7 @@ const styles = theme => ({
     marginRight: "auto"
   },
   textField: {
-    padding: "4px",
+    padding: "3px",
     height: "35px"
   },
   menu: {
@@ -58,11 +59,12 @@ const genders = [
     label: "Female"
   }
 ];
-
 class NewEntryForm extends Component {
   state = {
-    gender: "",
     //error associated with this field
+    date: "",
+    dateError: "",
+    gender: "",    
     genderError: "",
     age: "",
     ageError: "",
@@ -91,7 +93,7 @@ class NewEntryForm extends Component {
     thighL: "",
     thighLError: ""
   };
-  handleChange = ({ target: { name, value } }) => {
+  handleChange = ({ target: { name, value } }) => {    
     let errors = {};
     switch (name) {
       case "gender":
@@ -145,13 +147,17 @@ class NewEntryForm extends Component {
       ...errors,
       [name]: value
     });
+    console.log(this.state.date)
   };
+  
   resetForm = () => {
     document.getElementById("form").reset();
   }
-  handleSubmit = e => {
+  handleSubmit = e => {   
     //prevents refresh
-    e.preventDefault();     
+    e.preventDefault();  
+    console.log('step1') 
+     
     //JSON object for fetch send to server
     fetch("http://localhost:3002/newentry", {
       method: "POST",
@@ -160,6 +166,7 @@ class NewEntryForm extends Component {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
+        date: e.target.elements.date.value,
         gender: e.target.elements.gender.value,
         age: e.target.elements.age.value,
         height: e.target.elements.height.value,
@@ -174,7 +181,7 @@ class NewEntryForm extends Component {
         neck: e.target.elements.neck.value,
         hips: e.target.elements.hips.value,
         thighL: e.target.elements.thighL.value
-      })
+      })      
     })
       .then(function(data) {
         console.log("Request success: ", data);
@@ -183,6 +190,8 @@ class NewEntryForm extends Component {
         console.log("Request failure: ", error);
       });
       this.setState({
+        date: "",
+        dateError: "",
         gender: "",
         //error associated with this field
         genderError: "",
@@ -226,7 +235,17 @@ class NewEntryForm extends Component {
         <form onSubmit={this.handleSubmit} id="form">
           <Paper className={classes.paper}>
             <h2>Enter Stats Below and Submit to Save:</h2>
-            <h3><PickerDate/></h3>
+            <h3><PickerDate
+              dateChange={this.handleChange}
+             /// value={this.state.date}
+              name = "date"
+              id="entry-date"
+              label="Entry Date"
+              defaultValue="2018-12-24"
+              variant="outlined"
+              className={classes.textField}            
+              
+            /></h3>
             <Grid
               container
               spacing={24}
