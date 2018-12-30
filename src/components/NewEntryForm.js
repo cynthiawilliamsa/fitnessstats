@@ -6,7 +6,14 @@ import "../App.css";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
-import {ageValidation, heightValidation, weightValidation, bodyFatValidation, leanMassValidation} from './formValidation';
+import {
+  ageValidation,
+  heightValidation,
+  weightValidation,
+  bodyFatValidation,
+  leanMassValidation,
+  bicepRValidation
+} from "./formValidation";
 
 const styles = theme => ({
   root: {
@@ -76,7 +83,7 @@ class NewEntryForm extends Component {
     thighL: "",
     thighLError: ""
   };
-  handleChange =  ({ target: { name, value } }) => {
+  handleChange = ({ target: { name, value } }) => {
     let errors = {};
     switch (name) {
       case "age":
@@ -88,14 +95,17 @@ class NewEntryForm extends Component {
       case "weight":
         errors = weightValidation(value, errors);
         break;
-        case "bodyFat":
+      case "bodyFat":
         errors = bodyFatValidation(value, errors);
         break;
-        case "leanMass":
+      case "leanMass":
         errors = leanMassValidation(value, errors);
         break;
-      default: 
-        console.log('hi');
+      case "bicepR":
+        errors = bicepRValidation(value, errors);
+        break;
+      default:
+        console.log("hi");
         break;
     }
 
@@ -258,7 +268,7 @@ class NewEntryForm extends Component {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  onChange={this.handleChange}                  
+                  onChange={this.handleChange}
                   className={classes.textField}
                   label="Body Fat"
                   name="bodyFat"
@@ -273,7 +283,7 @@ class NewEntryForm extends Component {
                 />
                 <TextField
                   className={classes.textField}
-                  onChange={this.handleChange}                  
+                  onChange={this.handleChange}
                   label="Lean Mass"
                   name="leanMass"
                   variant="outlined"
@@ -290,11 +300,11 @@ class NewEntryForm extends Component {
                 <TextField
                   className={classes.textField}
                   onChange={this.handleChange}
-                  helperText={this.state.bicepRError}
                   label="Bicep R"
                   name="bicepR"
                   variant="outlined"
-                  value={this.state.bicepR}
+                  helperText={this.state.bicepRError || ""}
+                  error={this.state.bicepRError.length > 0}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">in</InputAdornment>
