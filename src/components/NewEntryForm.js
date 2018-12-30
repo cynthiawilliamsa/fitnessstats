@@ -15,7 +15,8 @@ import {
   bicepRValidation,
   chestValidation,
   waistValidation,
-  thighRValidation
+  thighRValidation,
+  bicepLValidation
 } from "./formValidation";
 
 const styles = theme => ({
@@ -115,6 +116,9 @@ class NewEntryForm extends Component {
         break;
       case "thighR":
         errors = thighRValidation(value, errors);
+        break;
+      case "bicepL":
+        errors = bicepLValidation(value, errors);
         break;
       default:
         console.log("hi");
@@ -376,12 +380,11 @@ class NewEntryForm extends Component {
                 <TextField
                   className={classes.textField}
                   onChange={this.handleChange}
-                  helperText={this.state.bicepLError}
                   label="Bicep L"
                   name="bicepL"
                   variant="outlined"
-                  value={this.state.bicepL}
-                  InputProps={{
+                  helperText={this.state.bicepLError || ""}
+                  error={this.state.bicepLError.length > 0}                  InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">in</InputAdornment>
                     )
