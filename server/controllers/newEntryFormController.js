@@ -16,6 +16,7 @@ module.exports.show =  function show(request, response) {
    module.exports.create =  function create(request, response) {
        console.log(request.body)
     const v = new newEntryFormModel({
+        date: request.body.date,
         gender: request.body.gender,
         age: request.body.age,
         height: request.body.height,
