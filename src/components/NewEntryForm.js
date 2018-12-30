@@ -145,45 +145,12 @@ class NewEntryForm extends Component {
       [name]: value
     });
   };
+  resetForm = () => {
+    document.getElementById("form").reset();
+  }
   handleSubmit = e => {
     //prevents refresh
-    e.preventDefault();
-    console.log(e.target.elements.gender.value);
-    console.log(e.target.elements.age.value);
-
-    //clear form
-    this.setState({
-      gender: "",
-      //error associated with this field
-      genderError: "",
-      age: "",
-      ageError: "",
-      height: "",
-      heightError: "",
-      weight: "",
-      weightError: "",
-      bodyFat: "",
-      bodyFatError: "",
-      leanMass: "",
-      leanMassError: "",
-      bicepR: "",
-      bicepRError: "",
-      bicepL: "",
-      bicepLError: "",
-      chest: "",
-      chestError: "",
-      neck: "",
-      neckError: "",
-      waist: "",
-      waistError: "",
-      hips: "",
-      hipsError: "",
-      thighR: "",
-      thighRError: "",
-      thighL: "",
-      thighLError: ""
-    });
-
+    e.preventDefault();     
     //JSON object for fetch send to server
     fetch("http://localhost:3002/newentry", {
       method: "POST",
@@ -214,6 +181,40 @@ class NewEntryForm extends Component {
       .catch(function(error) {
         console.log("Request failure: ", error);
       });
+      this.setState({
+        gender: "",
+        //error associated with this field
+        genderError: "",
+        age: "",
+        ageError: "",
+        height: "",
+        heightError: "",
+        weight: "",
+        weightError: "",
+        bodyFat: "",
+        bodyFatError: "",
+        leanMass: "",
+        leanMassError: "",
+        bicepR: "",
+        bicepRError: "",
+        bicepL: "",
+        bicepLError: "",
+        chest: "",
+        chestError: "",
+        neck: "",
+        neckError: "",
+        waist: "",
+        waistError: "",
+        hips: "",
+        hipsError: "",
+        thighR: "",
+        thighRError: "",
+        thighL: "",
+        thighLError: ""
+      });
+  
+       //clear form
+       this.resetForm();
   };
   render() {
     const { classes } = this.props;
@@ -221,7 +222,7 @@ class NewEntryForm extends Component {
     // const endpoint=`${host}/newentry`
     return (
       <div className={classes.root}>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} id="form">
           <Paper className={classes.paper}>
             <h2>Enter Stats Below and Submit to Save:</h2>
             <Grid
