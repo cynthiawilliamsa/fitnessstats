@@ -17,7 +17,9 @@ import {
   waistValidation,
   thighRValidation,
   bicepLValidation,
-  neckValidation
+  neckValidation,
+  hipsValidation,
+  thighLValidation
 } from "./formValidation";
 
 const styles = theme => ({
@@ -123,6 +125,12 @@ class NewEntryForm extends Component {
         break;
       case "neck":
         errors = neckValidation(value, errors);
+        break;
+      case "hips":
+        errors = hipsValidation(value, errors);
+        break;
+      case "thighL":
+        errors = thighLValidation(value, errors);
         break;
       default:
         console.log("hi");
@@ -414,12 +422,11 @@ class NewEntryForm extends Component {
                 <TextField
                   className={classes.textField}
                   onChange={this.handleChange}
-                  helperText={this.state.hipsError}
                   label="Hips"
                   name="hips"
                   variant="outlined"
-                  value={this.state.hips}
-                  InputProps={{
+                  helperText={this.state.hipsError || ""}
+                  error={this.state.hipsError.length > 0}                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">in</InputAdornment>
                     )
@@ -430,12 +437,11 @@ class NewEntryForm extends Component {
                 <TextField
                   className={classes.textField}
                   onChange={this.handleChange}
-                  helperText={this.state.thighLError}
                   label="Thigh L"
                   name="thighL"
                   variant="outlined"
-                  value={this.state.thighL}
-                  InputProps={{
+                  helperText={this.state.thighLError || ""}
+                  error={this.state.thighLError.length > 0}                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">in</InputAdornment>
                     )
