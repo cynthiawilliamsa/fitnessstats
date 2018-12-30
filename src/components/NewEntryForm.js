@@ -6,6 +6,7 @@ import "../App.css";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
+import {ageValidation, heightValidation, weightValidation, bodyFatValidation} from './formValidation';
 
 const styles = theme => ({
   root: {
@@ -42,23 +43,6 @@ const genders = [
     label: "Female"
   }
 ];
-
-const ageValidation = (age, err) => {
-  if (age.length > 2) {
-    err.ageError = "must less than 2 digits";
-  } else {
-    err.ageError = "";
-  }
-  return err;
-};
-const heightValidation = (height, err) => {
-  if (height.length > 3) {
-    err.heightError = "must be less than 3 digits";
-  } else {
-    err.heightError = "";
-  }
-  return err;
-};
 
 class NewEntryForm extends Component {
   state = {
@@ -100,6 +84,12 @@ class NewEntryForm extends Component {
         break;
       case "height":
         errors = heightValidation(value, errors);
+        break;
+      case "weight":
+        errors = weightValidation(value, errors);
+        break;
+        case "bodyFat":
+        errors = bodyFatValidation(value, errors);
         break;
       default: 
         console.log('hi');
@@ -254,7 +244,8 @@ class NewEntryForm extends Component {
                   label="Weight"
                   name="weight"
                   variant="outlined"
-                  value={this.state.weight}
+                  error={this.state.weightError.length > 0}
+                  helperText={this.state.weightError || ""}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">lb</InputAdornment>
@@ -270,7 +261,8 @@ class NewEntryForm extends Component {
                   label="Body Fat"
                   name="bodyFat"
                   variant="outlined"
-                  value={this.state.bodyFat}
+                  error={this.state.bodyFatError.length > 0}
+                  helperText={this.state.bodyFatError || ""}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end">%</InputAdornment>
