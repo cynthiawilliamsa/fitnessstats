@@ -11,6 +11,12 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 class Landing extends Component {
+    state = {
+        height: "",
+        weight: "",
+        bodyFat: "",
+        leanMass: ""
+    }
 
     getEntry=()=>{
         fetch("http://localhost:3002/newentry")
@@ -18,11 +24,8 @@ class Landing extends Component {
         .then((data)=>{
             let output = "<h2>Current Stats:</h2>";
             const newest = data[Object.keys(data).sort().pop()]
-            console.log(newest); 
-            const height = newest.height.value
-            console.log(height)           
-        })
-        
+            console.log(newest);           
+        })        
         .catch((err)=> console.log(err))
     }    
     render() {
