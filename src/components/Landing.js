@@ -10,16 +10,20 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 
-
-
-
 class Landing extends Component {
+
     getEntry=()=>{
         fetch("http://localhost:3002/newentry")
         .then((res)=> res.json())
         .then((data)=>{
-            console.log(data);
+            let output = "<h2>Current Stats:</h2>";
+            const newest = data[Object.keys(data).sort().pop()]
+            console.log(newest); 
+            const height = newest.height.value
+            console.log(height)           
         })
+        
+        .catch((err)=> console.log(err))
     }    
     render() {
       return (
@@ -33,7 +37,7 @@ class Landing extends Component {
                         <TableBody>
                             <TableRow>
                                 <TableCell>Height</TableCell>
-                       <TableCell>5'3:</TableCell>
+                       <TableCell>123</TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell>Weight</TableCell>
