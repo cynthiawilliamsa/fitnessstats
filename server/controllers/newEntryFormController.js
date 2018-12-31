@@ -1,18 +1,17 @@
 const newEntryFormModel = require('../models/newEntryFormModel');
 
 module.exports.list = function list (req, res) {
-    newEntryFormModel.find().exec().then((newEntry)=> {
-        return res.json(newEntry);
+    newEntryFormModel.find().exec().then((entries)=> {
+        return res.json(entries);
     });
 }
 
-module.exports.show =  function show(request, response) {
-    newEntryFormModel.findById(request.params.id).exec()
-    .then(newEntryForm => {
-        response.json(newEntryForm);
-    });   
+module.exports.show =  function show(req, res) {  
+    newEntryFormModel.findById(req.params.id).exec()
+    .then(lastEntry => {
+        res.json(lastEntry);
+    }).catch(console.log);   
    }
-
    module.exports.create =  function create(request, response) {
        console.log(request.body)
     const v = new newEntryFormModel({
