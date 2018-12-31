@@ -12,7 +12,6 @@ module.exports.show =  function show(req, res) {
         res.json(lastEntry);
     }).catch(console.log);   
    }
-
    module.exports.create =  function create(request, response) {
        console.log(request.body)
     const v = new newEntryFormModel({
