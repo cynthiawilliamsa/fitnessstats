@@ -6,11 +6,12 @@ module.exports.list = function list (req, res) {
     });
 }
 
-module.exports.show =  function show(request, response) {
-    newEntryFormModel.findById(request.params.id).exec()
-    .then(newEntryForm => {
-        response.json(newEntryForm);
-    });   
+module.exports.show =  function show(req, res) { 
+ 
+    newEntryFormModel.findById(req.params.id).exec()
+    .then(lastEntry => {
+        res.json(lastEntry);
+    }).catch(console.log);   
    }
 
    module.exports.create =  function create(request, response) {

@@ -18,7 +18,6 @@ class Landing extends Component {
                 <h3 style={{textAlign: 'center', color: "white"}}>Current Stats:</h3>
                 <Table style={{marginLeft: '4%', marginRight: 'auto'}}>
                     <TableHead >
-                        <TableBody>
                             <TableRow>
                                 <TableCell>Height</TableCell>
                        <TableCell>5'3:</TableCell>
@@ -39,7 +38,6 @@ class Landing extends Component {
                                 <TableCell>Lean Weight</TableCell>
                                 <TableCell>XX</TableCell>
                             </TableRow>
-                    </TableBody>
                 </TableHead>    
             </Table>                  
         </Paper>        
