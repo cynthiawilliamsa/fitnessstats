@@ -15,7 +15,8 @@ class Landing extends Component {
     currentStats: {},
     loading: true
   };
-
+  //automatically called before initial render
+  //change for handle and config of state and prep for first render
   componentWillMount() {
     fetch("http://localhost:3002/newentry")
       .then(res => res.json())
@@ -38,7 +39,7 @@ class Landing extends Component {
       })
       .catch(err => console.log(err));
 
-    //used setTimeout mimic fetch call during function/component buildout.
+    //***keeping for reference***used setTimeout mimic fetch call during function/component buildout.
     // setTimeout(()=> this.setState({
     //     //spread operator in this case is reflective of entire state
     //     ...this.state,
@@ -51,7 +52,7 @@ class Landing extends Component {
       return <LoadingStats />;
     } else {
       return <CurrentStats
-      //accessing stat for functional component below to render 
+      //accessing stats/object by using spread for functional component below to render 
             {...this.state.currentStats}
       />;
     }
