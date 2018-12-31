@@ -1,13 +1,12 @@
 const newEntryFormModel = require('../models/newEntryFormModel');
 
 module.exports.list = function list (req, res) {
-    newEntryFormModel.find().exec().then((newEntry)=> {
-        return res.json(newEntry);
+    newEntryFormModel.find().exec().then((entries)=> {
+        return res.json(entries);
     });
 }
 
-module.exports.show =  function show(req, res) { 
- 
+module.exports.show =  function show(req, res) {  
     newEntryFormModel.findById(req.params.id).exec()
     .then(lastEntry => {
         res.json(lastEntry);
