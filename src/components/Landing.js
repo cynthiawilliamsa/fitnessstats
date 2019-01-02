@@ -61,7 +61,7 @@ class Landing extends Component {
 
 
 const LoadingStats = () => {
-  return <div>Loading</div>;
+  return <div className='loading-container'><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>
 };
 
 const CurrentStats = ({height, weight, bodyFat, leanMass}) => {
