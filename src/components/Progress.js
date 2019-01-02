@@ -34,14 +34,12 @@ class Progress extends Component {
     //   loading: false
     // }), 1000)
   }
-  
+
   render() {
     if (this.state.loading) {
       return <LoadingStats />;
     } else {
-      return <ProgressStats
-              stats={ this.state.stats}
-         />;
+      return <ProgressStats stats={this.state.stats} />;
     }
   }
 }
@@ -50,14 +48,43 @@ const LoadingStats = () => {
   return <h2>Loading</h2>;
 };
 
-const ProgressStats = (props) => {
-  //convert object to array for mapping multipe child components   
-    const listItems = props.stats.map((item)=> {   
-      return <li>{"Date:" + item.date + " id: " + item._id}</li>
-    });
-    console.log(props.stats)
+const ProgressStats = props => {
+  //convert object to array for mapping multipe child components
+  const listItems = props.stats.map(item => {
     return (
-      <ul>{listItems}</ul>
-      );
-    }     
+      <li style={{ listStyle: "none" }}>
+        <a href="/progress"  style={{color: "white", fontWeight: 'bold', textDecoration:"none", marginLeft: 'auto', marginRight: 'auto'}}>{item.date}</a>
+      </li>
+    );
+  });
+  console.log(props.stats);
+  return (
+    <div className="Progress">
+      <h2 style={{ textAlign: "center", margin: "0", color: "white" }}>
+        Check out your progress, Julie!
+      </h2>
+      <div
+        style={{
+          width: "300px",
+          paddingTop: "2em",
+          paddingBottom: "2em",
+          marginLeft: "auto",
+          marginRight: "auto",
+          position: "relative",
+          display: "block"
+        }}
+      >
+        <Paper
+          style={{ background: "#1CB5E0", padding: "1em", marginBottom: "1em" }}
+        >
+          <h3 style={{ textAlign: "center", color: "white" }}>
+            Click Date to view detail.
+          </h3>
+
+          <ul>{listItems}</ul>
+        </Paper>
+      </div>
+    </div>
+  );
+};
 export default Progress;
