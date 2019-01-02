@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "../App.css";
 import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
 
 class Progress extends Component {
   state = {
@@ -16,7 +20,7 @@ class Progress extends Component {
         const allStats = data.sort((a, b) => {
           return b.date > a.date;
         });
-        console.log(allStats);
+        // console.log(allStats);
         this.setState({
           ...this.state,
           stats: allStats,
@@ -30,11 +34,14 @@ class Progress extends Component {
     //   loading: false
     // }), 1000)
   }
+  
   render() {
     if (this.state.loading) {
       return <LoadingStats />;
     } else {
-      return <ProgressStats />;
+      return <ProgressStats
+              stats={ this.state.stats}
+         />;
     }
   }
 }
@@ -43,14 +50,14 @@ const LoadingStats = () => {
   return <h2>Loading</h2>;
 };
 
-const ProgressStats = () => {
-  return (
-    <div className="Progress">
-      <h2 style={{ textAlign: "center", margin: "0", color: "white" }}>
-        Check out your progress, Julie!
-      </h2>
-    </div>
-  );
-};
-
+const ProgressStats = (props) => {
+  //convert object to array for mapping multipe child components   
+    const listItems = props.stats.map((item)=> {   
+      return <li>{"Date:" + item.date + " id: " + item._id}</li>
+    });
+    console.log(props.stats)
+    return (
+      <ul>{listItems}</ul>
+      );
+    }     
 export default Progress;

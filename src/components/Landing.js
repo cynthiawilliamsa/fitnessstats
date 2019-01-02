@@ -106,7 +106,7 @@ const CurrentStats = ({height, weight, bodyFat, leanMass}) => {
                 <TableCell>{bodyFat} %</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Lean Weight</TableCell>
+                <TableCell>Lean Mass</TableCell>
                 <TableCell>{leanMass} lb</TableCell>
               </TableRow>
             </TableBody>
