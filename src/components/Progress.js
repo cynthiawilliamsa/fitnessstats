@@ -13,7 +13,7 @@ import TableRow from "@material-ui/core/TableRow";
 
 function getModalStyle() {
   const top = 20;
-  const left = 50;
+  const left = 40;
 
   return {
     top: `${top}%`,
@@ -23,13 +23,14 @@ function getModalStyle() {
 
 const styles = theme => ({
   paper: {
-    position: "absolute",
-    width: theme.spacing.unit * 70,
-    backgroundColor: theme.palette.background.paper,
+    position: "relative",
+    width: theme.spacing.unit * 80,
+    textAlign: 'center',
+    align: 'center',
+    backgroundColor: "#1CB5E0",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing.unit * 4,
-    outline: "none"
-    
+    outline: "none",
+    color:'white'
   }
 });
 
@@ -145,6 +146,7 @@ const ProgressStats = props => {
           marginRight: "auto",
           position: "relative",
           display: "block"
+        
         }}
       >
         <Paper
@@ -165,50 +167,48 @@ const ProgressModal = props => {
   const { classes, selected } = props;
 
   return (
-    <Modal open={props.open} styles={{borderRadius:"5px", background:"#1CB5E0"}}>
+    <Modal open={props.open} >
       <Table style={getModalStyle()} className={classes.paper}>
-        <TableBody variant="h6" id="modal-title">
+        <TableBody variant="h6" id="modal-title" style={{marginLeft: '5px', marginRight:'auto', padding: '1em'}}>
           {selected ? (
             <div>
-            <TableRow>
-              <TableCell>Entry Date</TableCell>
-              <TableCell>{selected.date}</TableCell>              
-            </TableRow>           
-            <TableRow>
-              <TableCell>Gender</TableCell>
-              <TableCell>{selected.gender}</TableCell>
-             <TableCell>Age</TableCell>
-              <TableCell>{selected.age}</TableCell>
+            <h3 style={{marginBottom: '2px', textAlign: 'center'}}>Entry Date</h3>
+              <h4 style={{margin: '0', textAlign: 'center'}}>{selected.date}</h4>                       
+            <TableRow >
+              <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Gender</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.gender}</TableCell>
+             <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Age</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.age}</TableCell>
             </TableRow> 
             <TableRow>
-             <TableCell>Height</TableCell>
-              <TableCell>{selected.height} in</TableCell>
-              <TableCell>Weight</TableCell>
-              <TableCell>{selected.weight} lbs</TableCell>
+             <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Height</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.height} in</TableCell>
+              <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Weight</TableCell>
+              <TableCell style={{color: "white",  letterSpacing: '1px'}}>{selected.weight} lbs</TableCell>
             </TableRow> 
             <TableRow>
-             <TableCell>Body Fat</TableCell>
-              <TableCell>{selected.bodyFat} %</TableCell>
-              <TableCell>LeanMass</TableCell>
-              <TableCell>{selected.leanMass} lbs</TableCell>
+             <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Body Fat</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.bodyFat} %</TableCell>
+              <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Lean Mass</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.leanMass} lbs</TableCell>
             </TableRow> 
             <TableRow>
-             <TableCell>Bicep R/L</TableCell>
-              <TableCell>{selected.bicepR} in/{selected.bicepL} in</TableCell>
-              <TableCell>Thigh R/L</TableCell>
-              <TableCell>{selected.thighR} in/{selected.thighL} in</TableCell>
+             <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Bicep R/L</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.bicepR} in/{selected.bicepL} in</TableCell>
+              <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Thigh R/L</TableCell>
+              <TableCell style={{color: "white",  letterSpacing: '1px'}}>{selected.thighR} in/{selected.thighL} in</TableCell>
             </TableRow> 
             <TableRow>
-             <TableCell>Chest</TableCell>
-              <TableCell>{selected.chest} in</TableCell>
-              <TableCell>Hips</TableCell>
-              <TableCell>{selected.hips}in</TableCell>
+             <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Chest</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.chest} in</TableCell>
+              <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Hips</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.hips}in</TableCell>
             </TableRow> 
             <TableRow>
-             <TableCell>Waist</TableCell>
-              <TableCell>{selected.waist}</TableCell>
-              <TableCell>Neck</TableCell>
-              <TableCell>{selected.neck}</TableCell>
+             <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Waist</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.waist}</TableCell>
+              <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Neck</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.neck}</TableCell>
             </TableRow> 
             </div>
           ) : (
@@ -216,7 +216,7 @@ const ProgressModal = props => {
           )}
         </TableBody>
         
-        <Button onClick={props.close}>Close</Button>{" "}
+        <Button onClick={props.close} style = {{color: 'white'}}>Close</Button>
       </Table>
     </Modal>
   );
