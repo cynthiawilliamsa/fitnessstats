@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "../App.css";
 import Paper from "@material-ui/core/Paper";
 import Modal from "@material-ui/core/Modal";
-import Typography from "@material-ui/core/Typography";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Table from "@material-ui/core/Table";
@@ -30,7 +28,9 @@ const styles = theme => ({
     backgroundColor: "#1CB5E0",
     boxShadow: theme.shadows[5],
     outline: "none",
-    color:'white'
+    color:'white',
+    borderRadius: '5px',
+    dispaly:'block'
   }
 });
 
@@ -134,7 +134,7 @@ const ProgressStats = props => {
 
   return (
     <div className="Progress">
-      <h2 style={{ textAlign: "center", margin: "0", color: "white" }}>
+      <h2 style={{ textAlign: "center", margin: '0', color: "white", paddingTop: '1em' }}>
         Check out your progress, Julie!
       </h2>
       <div
@@ -152,11 +152,11 @@ const ProgressStats = props => {
         <Paper
           style={{ background: "#1CB5E0", padding: "1em", marginBottom: "1em" }}
         >
-          <h3 style={{ textAlign: "center", color: "white" }}>
+          <h3 style={{ textAlign: "center", color: "white", marginTop: '5px' }}>
             Click Date to view detail.
           </h3>
 
-          <ul>{listItems}</ul>
+          <ul style={{textAlign:'center'}}>{listItems}</ul>
         </Paper>
       </div>
     </div>
@@ -167,7 +167,7 @@ const ProgressModal = props => {
   const { classes, selected } = props;
 
   return (
-    <Modal open={props.open} >
+    <Modal open={props.open}>
       <Table style={getModalStyle()} className={classes.paper}>
         <TableBody variant="h6" id="modal-title" style={{marginLeft: '5px', marginRight:'auto', padding: '1em'}}>
           {selected ? (
@@ -202,13 +202,13 @@ const ProgressModal = props => {
              <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Chest</TableCell>
               <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.chest} in</TableCell>
               <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Hips</TableCell>
-              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.hips}in</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.hips} in</TableCell>
             </TableRow> 
             <TableRow>
              <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Waist</TableCell>
-              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.waist}</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.waist} in</TableCell>
               <TableCell style={{color: "white", fontWeight: "bold", letterSpacing: '1px'}}>Neck</TableCell>
-              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.neck}</TableCell>
+              <TableCell style={{color: "white", letterSpacing: '1px'}}>{selected.neck} in</TableCell>
             </TableRow> 
             </div>
           ) : (
