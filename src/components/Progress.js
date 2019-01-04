@@ -6,9 +6,13 @@ import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
 
 function getModalStyle() {
-  const top = 50;
+  const top = 20;
   const left = 50;
 
   return {
@@ -20,11 +24,12 @@ function getModalStyle() {
 const styles = theme => ({
   paper: {
     position: "absolute",
-    width: theme.spacing.unit * 50,
+    width: theme.spacing.unit * 70,
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
     outline: "none"
+    
   }
 });
 
@@ -160,23 +165,59 @@ const ProgressModal = props => {
   const { classes, selected } = props;
 
   return (
-    <Modal open={props.open}>
-      <div style={getModalStyle()} className={classes.paper}>
-        <Typography variant="h6" id="modal-title">
+    <Modal open={props.open} styles={{borderRadius:"5px", background:"#1CB5E0"}}>
+      <Table style={getModalStyle()} className={classes.paper}>
+        <TableBody variant="h6" id="modal-title">
           {selected ? (
             <div>
-              {selected.date} <br />
-              {selected.age} <p/>
+            <TableRow>
+              <TableCell>Entry Date</TableCell>
+              <TableCell>{selected.date}</TableCell>              
+            </TableRow>           
+            <TableRow>
+              <TableCell>Gender</TableCell>
+              <TableCell>{selected.gender}</TableCell>
+             <TableCell>Age</TableCell>
+              <TableCell>{selected.age}</TableCell>
+            </TableRow> 
+            <TableRow>
+             <TableCell>Height</TableCell>
+              <TableCell>{selected.height} in</TableCell>
+              <TableCell>Weight</TableCell>
+              <TableCell>{selected.weight} lbs</TableCell>
+            </TableRow> 
+            <TableRow>
+             <TableCell>Body Fat</TableCell>
+              <TableCell>{selected.bodyFat} %</TableCell>
+              <TableCell>LeanMass</TableCell>
+              <TableCell>{selected.leanMass} lbs</TableCell>
+            </TableRow> 
+            <TableRow>
+             <TableCell>Bicep R/L</TableCell>
+              <TableCell>{selected.bicepR} in/{selected.bicepL} in</TableCell>
+              <TableCell>Thigh R/L</TableCell>
+              <TableCell>{selected.thighR} in/{selected.thighL} in</TableCell>
+            </TableRow> 
+            <TableRow>
+             <TableCell>Chest</TableCell>
+              <TableCell>{selected.chest} in</TableCell>
+              <TableCell>Hips</TableCell>
+              <TableCell>{selected.hips}in</TableCell>
+            </TableRow> 
+            <TableRow>
+             <TableCell>Waist</TableCell>
+              <TableCell>{selected.waist}</TableCell>
+              <TableCell>Neck</TableCell>
+              <TableCell>{selected.neck}</TableCell>
+            </TableRow> 
             </div>
           ) : (
             ""
           )}
-        </Typography>
-        <Typography variant="subtitle1" id="simple-modal-description">
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </Typography>
+        </TableBody>
+        
         <Button onClick={props.close}>Close</Button>{" "}
-      </div>
+      </Table>
     </Modal>
   );
 };
