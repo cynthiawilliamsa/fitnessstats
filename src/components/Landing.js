@@ -87,17 +87,17 @@ const CurrentStats = ({height, weight, bodyFat, leanMass}) => {
           <h3 style={{ textAlign: "center", color: "white" }}>
             Current Stats:
           </h3>
-          <Table style={{ marginLeft: "4%", marginRight: "auto" }}>
+          <Table style={{color: "white", marginLeft: "auto", marginRight: "auto" }}>
             <TableBody>
               <TableRow>
-                <TableCell>Height</TableCell>
+                <TableCell style={{color: "white"}}>Height</TableCell>
                 <TableCell>{height} in</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Weight</TableCell>
                 <TableCell>{weight} in</TableCell>
               </TableRow>
-              <TableRow>
+              <TableRow>    
                 <TableCell>Hip-to-Waist Ratio</TableCell>
                 <TableCell>.9</TableCell>
               </TableRow>

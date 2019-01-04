@@ -2,18 +2,38 @@ import React, { Component } from "react";
 import "../App.css";
 import Paper from "@material-ui/core/Paper";
 import Modal from "@material-ui/core/Modal";
-import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`
+  };
+}
+
+const styles = theme => ({
+  paper: {
+    position: "absolute",
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+    outline: "none"
+  }
+});
 
 class Progress extends Component {
   state = {
     stats: {},
     loading: true,
-    open:false
-  };  
+    open: false
+  };
 
   componentWillMount() {
     fetch("http://localhost:3002/newentry")
@@ -38,44 +58,75 @@ class Progress extends Component {
     // }), 1000)
   }
 
-  handleOpen = (e) => {
+  handleOpen = e => {
     e.preventDefault();
-    if(this.state.open){
-      this.setState({ open: true });  
-      return <ProgressModal/>
-       
-    }    
+  
+    const selected = this.state.stats[e.target.id];
+    this.setState({ open: true, selected: selected });
   };
-
   handleClose = () => {
     this.setState({ open: false });
   };
 
-
   render() {
+    const { classes } = this.props;
+
     if (this.state.loading) {
       return <LoadingStats />;
     } else {
-      return <ProgressStats stats={this.state.stats} />;
+      return (
+        <div>
+          <ProgressModal
+            open={this.state.open}
+            close={this.handleClose}
+            classes={classes}
+            selected={this.state.selected}
+          />
+          <ProgressStats stats={this.state.stats} open={this.handleOpen} />
+        </div>
+      );
     }
   }
 }
 
 const LoadingStats = () => {
-  return <div className='loading-container'><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>;
+  return (
+    <div className="loading-container">
+      <div className="lds-ring">
+        <div />
+        <div />
+        <div />
+        <div />
+      </div>
+    </div>
+  );
 };
 
 const ProgressStats = props => {
   //convert object to array for mapping multipe child components
-  const listItems = props.stats.map(item => {
+  const listItems = props.stats.map((item, index) => {
     return (
-      <li style={{ listStyle: "none" }}>{item.date}
+      <li key={index} style={{ listStyle: "none" }}>
+        <a
+          id={index}
+          href="/progress"
+          onClick={props.open}
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            textDecoration: "none",
+            marginLeft: "auto",
+            marginRight: "auto"
+          }}
+        >
+          {item.date}
+        </a>
       </li>
     );
   });
   console.log(props.stats);
 
-    return (
+  return (
     <div className="Progress">
       <h2 style={{ textAlign: "center", margin: "0", color: "white" }}>
         Check out your progress, Julie!
@@ -98,7 +149,7 @@ const ProgressStats = props => {
             Click Date to view detail.
           </h3>
 
-          <ul><a href="/progress" style={{color: "white", fontWeight: 'bold', textDecoration:"none", marginLeft: 'auto', marginRight: 'auto'}}>{listItems}</a></ul>
+          <ul>{listItems}</ul>
         </Paper>
       </div>
     </div>
@@ -106,14 +157,29 @@ const ProgressStats = props => {
 };
 const ProgressModal = props => {
   //when href clicked modal shows corresponding entry stats
-  return (
-    <Modal
-      open={this.state.open}
-      onClose={this.handleClose}
-      >
-    <Button>Close</Button></Modal>
-  );
-}
- 
+  const { classes, selected } = props;
 
-export default Progress;
+  return (
+    <Modal open={props.open}>
+      <div style={getModalStyle()} className={classes.paper}>
+        <Typography variant="h6" id="modal-title">
+          {selected ? (
+            <div>
+              {selected.date} <br />
+              {selected.age} <p/>
+            </div>
+          ) : (
+            ""
+          )}
+        </Typography>
+        <Typography variant="subtitle1" id="simple-modal-description">
+          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        </Typography>
+        <Button onClick={props.close}>Close</Button>{" "}
+      </div>
+    </Modal>
+  );
+};
+
+export default withStyles(styles)(Progress);
+
