@@ -1,14 +1,19 @@
+//***future goals***
+//add more comprehensive validation for form
+//update date field to default to current date on refresh
+//implement loading spinner functionality
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import "../App.css";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
-import PickerDate from './datePicker';
+import PickerDate from "./datePicker";
 import {
-  dateValidation,
   genderValidation,
   ageValidation,
   heightValidation,
@@ -28,26 +33,26 @@ import {
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    background: "#a8e063"
+    background: "#a8e063",
+    height: "auto"
   },
   paper: {
-    padding: theme.spacing.unit * 2,
+    paddingTop: '1em',
     textAlign: "center",
     color: theme.palette.text.secondary,
     width: "70%",
+    height: 'auto',
     marginLeft: "auto",
     marginRight: "auto"
   },
   textField: {
-    padding: "3px",
+    padding: "10px",
     height: "35px"
   },
   menu: {
     width: "80%"
-  },
-  margin: {
-    margin: theme.spacing.unit
   }
+
 });
 const genders = [
   {
@@ -64,7 +69,7 @@ class NewEntryForm extends Component {
     //error associated with this field
     date: "",
     dateError: "",
-    gender: "",    
+    gender: "",
     genderError: "",
     age: "",
     ageError: "",
@@ -93,7 +98,8 @@ class NewEntryForm extends Component {
     thighL: "",
     thighLError: ""
   };
-  handleChange = ({ target: { name, value } }) => {    
+
+  handleChange = ({ target: { name, value } }) => {
     let errors = {};
     switch (name) {
       case "gender":
@@ -147,17 +153,16 @@ class NewEntryForm extends Component {
       ...errors,
       [name]: value
     });
-    console.log(this.state.date)
   };
-  
+
   resetForm = () => {
     document.getElementById("form").reset();
-  }
-  handleSubmit = e => {   
+  };
+  handleSubmit = e => {
     //prevents refresh
-    e.preventDefault();  
-    console.log('step1') 
-     
+    e.preventDefault();
+    console.log("step1");
+
     //JSON object for fetch send to server
     fetch("http://localhost:3002/newentry", {
       method: "POST",
@@ -181,7 +186,7 @@ class NewEntryForm extends Component {
         neck: e.target.elements.neck.value,
         hips: e.target.elements.hips.value,
         thighL: e.target.elements.thighL.value
-      })      
+      })
     })
       .then(function(data) {
         console.log("Request success: ", data);
@@ -189,70 +194,72 @@ class NewEntryForm extends Component {
       .catch(function(error) {
         console.log("Request failure: ", error);
       });
-      this.setState({
-        date: "",
-        dateError: "",
-        gender: "",
-        //error associated with this field
-        genderError: "",
-        age: "",
-        ageError: "",
-        height: "",
-        heightError: "",
-        weight: "",
-        weightError: "",
-        bodyFat: "",
-        bodyFatError: "",
-        leanMass: "",
-        leanMassError: "",
-        bicepR: "",
-        bicepRError: "",
-        bicepL: "",
-        bicepLError: "",
-        chest: "",
-        chestError: "",
-        neck: "",
-        neckError: "",
-        waist: "",
-        waistError: "",
-        hips: "",
-        hipsError: "",
-        thighR: "",
-        thighRError: "",
-        thighL: "",
-        thighLError: ""
-      });
-  
-       //clear form
-       this.resetForm();
+    this.setState({
+      date: "",
+      dateError: "",
+      gender: "",
+      //error associated with this field
+      genderError: "",
+      age: "",
+      ageError: "",
+      height: "",
+      heightError: "",
+      weight: "",
+      weightError: "",
+      bodyFat: "",
+      bodyFatError: "",
+      leanMass: "",
+      leanMassError: "",
+      bicepR: "",
+      bicepRError: "",
+      bicepL: "",
+      bicepLError: "",
+      chest: "",
+      chestError: "",
+      neck: "",
+      neckError: "",
+      waist: "",
+      waistError: "",
+      hips: "",
+      hipsError: "",
+      thighR: "",
+      thighRError: "",
+      thighL: "",
+      thighLError: ""
+    });
+
+    //clear form
+    this.resetForm();
   };
+
   render() {
     const { classes } = this.props;
-    // const host = process.env.LOCAL_ENV || ""
-    // const endpoint=`${host}/newentry`
     return (
       <div className={classes.root}>
         <form onSubmit={this.handleSubmit} id="form">
           <Paper className={classes.paper}>
-            <h2>Enter Stats Below and Submit to Save:</h2>
-            <h3><PickerDate
-              dateChange={this.handleChange}
-             /// value={this.state.date}
-              name = "date"
-              id="entry-date"
-              label="Entry Date"
-              defaultValue="2018-12-24"
-              variant="outlined"
-              className={classes.textField}            
-              
-            /></h3>
+            <h2 style={{ marginTop: "0" }}>
+              Enter Stats Below and Submit to Save:
+            </h2>
+            <h3 style={{margin: '0'}}>
+              <PickerDate
+                dateChange={this.handleChange}
+                name="date"
+                id="entry-date"
+                label="Entry Date"
+                defaultValue="2019-01-04"
+                variant="outlined"
+                className={classes.textField}
+              />
+            </h3>
             <Grid
               container
-              spacing={24}
+              spacing={22}
               style={{ width: "80%", marginLeft: "auto", marginRight: "auto" }}
             >
               <Grid item xs={12}>
                 <TextField
+                  style={{ marginTop: "0" }}
                   required
                   id="gender selection"
                   select
@@ -323,7 +330,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} style={{ padding: "0" }}>
                 <TextField
                   required
                   type="number"
@@ -357,7 +364,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   type="number"
@@ -375,7 +382,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   type="number"
@@ -393,7 +400,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   type="number"
@@ -411,7 +418,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   type="number"
@@ -429,7 +436,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   type="number"
@@ -447,7 +454,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   type="number"
@@ -465,7 +472,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   type="number"
@@ -483,7 +490,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid item xs={12} sm={3}>
                 <TextField
                   required
                   type="number"
@@ -501,7 +508,7 @@ class NewEntryForm extends Component {
                   }}
                 />
               </Grid>
-              <button type="submit">Submit</button>
+              <Button color="primary" variant="contained" type="submit">Submit</Button>
             </Grid>
           </Paper>
         </form>

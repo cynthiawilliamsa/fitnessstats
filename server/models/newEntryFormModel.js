@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 const schema = new mongoose.Schema({
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     gender: {
