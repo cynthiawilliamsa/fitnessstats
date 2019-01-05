@@ -1,3 +1,8 @@
+
+//***Future goals***
+//add calucation to hip-to-waist to display current risk for metabolic disease
+//implement authentication 
+
 import React, { Component } from "react";
 import "../App.css";
 import Paper from "@material-ui/core/Paper";
@@ -6,12 +11,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 
-//write test
-//implement code
-//refactor
-//***Future goals***
-//add calucation to hip-to-waist to display current risk for metabolic disease
-//improve styling
+
 class Landing extends Component {
   state = {
     currentStats: {},

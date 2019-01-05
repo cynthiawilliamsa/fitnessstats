@@ -1,3 +1,7 @@
+//***future goals***
+//end goal for this page is to utilize D3 library to implement detailed graphical user stats to clients.  
+//graphs will take into account healthy ranges based on age/gender for bodyFat, hip-to-waist ratio, weight etc. and show the data to clients in a easy to understand way.
+//make modal more responsive for mobile users
 import React, { Component } from "react";
 import "../App.css";
 import Paper from "@material-ui/core/Paper";
@@ -155,8 +159,7 @@ const ProgressStats = props => {
           <h3 style={{ textAlign: "center", color: "white", marginTop: '5px' }}>
             Click Date to view detail.
           </h3>
-
-          <ul style={{textAlign:'center'}}>{listItems}</ul>
+          <ul style={{textAlign:'center', paddingLeft: '0'}}>{listItems}</ul>
         </Paper>
       </div>
     </div>
@@ -169,7 +172,7 @@ const ProgressModal = props => {
   return (
     <Modal open={props.open}>
       <Table style={getModalStyle()} className={classes.paper}>
-        <TableBody variant="h6" id="modal-title" style={{marginLeft: '5px', marginRight:'auto', padding: '1em'}}>
+        <TableBody style={{ marginLeft: '5px', marginRight:'auto', padding: '1em'}}>
           {selected ? (
             <div>
             <h3 style={{marginBottom: '2px', textAlign: 'center'}}>Entry Date</h3>
@@ -216,7 +219,7 @@ const ProgressModal = props => {
           )}
         </TableBody>
         
-        <Button onClick={props.close} style = {{color: 'white'}}>Close</Button>
+        <Button color= 'primary' variant='contained' onClick={props.close} style = {{color: 'white', fontWeight: 'bold'}}>Close</Button>
       </Table>
     </Modal>
   );

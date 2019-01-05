@@ -1,3 +1,8 @@
+//***future goals***
+//add more comprehensive validation for form
+//update date field to default to current date on refresh
+//implement loading spinner functionality
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -24,7 +29,6 @@ import {
   hipsValidation,
   thighLValidation
 } from "./formValidation";
-const moment = require("moment");
 
 const styles = theme => ({
   root: {
@@ -63,7 +67,6 @@ const genders = [
 class NewEntryForm extends Component {
   state = {
     //error associated with this field
-    selectedDate: new moment().format("L"),
     date: "",
     dateError: "",
     gender: "",
