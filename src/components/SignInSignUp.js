@@ -60,7 +60,7 @@ class SignInSignUp extends Component {
     });
 
     //Post request to backend
-    fetch("/api/account/signup", {
+    fetch("/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
