@@ -1,9 +1,18 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const router = express.Router();
-const {list,show,create,update,remove} = require('../controllers/userController');
+const mongoose = require('mongoose');
 
-router.get('/users', list);
-router.post('/users', create);
+//load user model
+require('../models/userModel');
+const User = mongoose.model('user');
+
+//User Register route
+router.get('/register', (req, res) => {
+    console.log("/register")
+    res.send("register");
+});
+
+
 
 module.exports = router;
-
