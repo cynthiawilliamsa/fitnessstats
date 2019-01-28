@@ -1,7 +1,17 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const schema = new mongoose.Schema ({   
+const schema = new mongoose.Schema ({
+    firstName: {
+        type: String,
+        default: "",
+        required: true
+    },
+    lastName: {
+        type: String,
+        default: "",
+        required: true
+    },   
     email: {
         type: String,
         default: "",
@@ -11,7 +21,7 @@ const schema = new mongoose.Schema ({
         type: String,
         default: "",
         required: true
-    },
+    },    
     isDeleted: {
         type: Boolean,
         default: false,
