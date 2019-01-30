@@ -6,6 +6,18 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
+    paper: {
+        position: "relative",
+        display: "flex",
+        width: theme.spacing.unit * 60,
+        textAlign: 'center',
+        align: 'center',
+        boxShadow: theme.shadows[5],
+        outline: "none",
+        color:'black',
+        borderRadius: '5px',
+        padding: "10px"
+      },
   textField: {
     padding: "10px",
     height: "35px"
@@ -29,15 +41,13 @@ class RegisterUser extends Component {
     });
   };
 
+  resetForm = () => {
+      document.getElementById("form").reset();
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    console.log("clicked");
-    const form = e.target;
-    
-    const data = new FormData(form);
-    console.log(form);
-    console.log(this.state)
-
+    //fetch creats JSON object and sends to server.
     fetch("http://localhost:3002/users/register", {
     
       headers: {
@@ -53,21 +63,28 @@ class RegisterUser extends Component {
       .catch(function(error) {
         console.log("request failure.", error);
       });
+      //clear state after form data sent to server
+      this.setState({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          password2: ""
+      });
+
+      //clear form
+      this.resetForm();
   };
+
 
   render() {
     const { classes } = this.props;
     return (
       <div className="register" style={{ minHeight: "100vh" }}>
-        <Paper
-          style={{
-            width: "25%",
-            marginLeft: "auto",
-            marginRight: "auto",
-            padding: "10px"
-          }}
+        <Paper 
+            className={classes.paper}
         >
-          <h3 class="text-center">Account Register</h3>
+          
           <Grid
             container
             display="flex"
@@ -75,10 +92,11 @@ class RegisterUser extends Component {
             alignItems="center"
             justify="center"
           >
+          <h3 class="text-center">Account Register</h3>
+          
             <form
               onSubmit={this.handleSubmit}
-              //   action="/users/register"
-              //   method="post"
+              id="form"
             >
               <Grid item>
                 <TextField

@@ -34,7 +34,7 @@ const styles = theme => ({
     outline: "none",
     color:'white',
     borderRadius: '5px',
-    dispaly:'block'
+    display:'block'
   }
 });
 
