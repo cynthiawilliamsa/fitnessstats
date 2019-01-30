@@ -164,7 +164,7 @@ class NewEntryForm extends Component {
     console.log("step1");
 
     //JSON object for fetch send to server
-    fetch("http://localhost:3002/newentry", {
+    fetch("/newentry", {
       method: "POST",
       headers: {
         Accept: "application/json",

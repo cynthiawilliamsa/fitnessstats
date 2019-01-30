@@ -46,7 +46,7 @@ class Progress extends Component {
   };
 
   componentWillMount() {
-    fetch("http://localhost:3002/newentry")
+    fetch("/newentry")
       .then(res => res.json())
       .then(data => {
         //create var to hold all stats sorted newest to oldest

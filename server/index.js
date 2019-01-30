@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
 
 //
 app.use(bodyParser.json());
-// app.use(express.static('public'));
+app.use(express.static('build'));
 app.use(nefr)
 app.use(usr)
 

@@ -48,7 +48,7 @@ class RegisterUser extends Component {
   handleSubmit = e => {
     e.preventDefault();
     //fetch creats JSON object and sends to server.
-    fetch("http://localhost:3002/users/register", {
+    fetch("/users/register", {
     
       headers: {
         Accept: "application/json",

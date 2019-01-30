@@ -20,7 +20,7 @@ class Landing extends Component {
   //automatically called before initial render
   //change for handle and config of state and prep for first render
   componentWillMount() {
-    fetch("http://localhost:3002/newentry")
+    fetch("/newentry")
       .then(res => res.json())
       .then(data => {
         //create var to hold most recent stats entry
