@@ -8,8 +8,8 @@ import RegisterUser from './RegisterUser';
 //route links for project
 const Main = () => (
     <Switch>
-        <Route exact path="/" component={RegisterUser}/>
-        <Route exact path="/Landing" component = {Landing}/>
+        <Route exact path="/" component={Landing}/>
+        {/* <Route exact path="/Landing" component = {Landing}/> */}
         <Route exact path="/newentryform" component={NewEntryForm}/>
         <Route exact path="/progress" component={Progress}/>
     </Switch>

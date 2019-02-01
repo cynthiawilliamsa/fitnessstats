@@ -10,6 +10,7 @@ class Header extends Component {
         <Toolbar>
           <h1>Fitness Stats Tracker</h1>
         </Toolbar>
+        
       </AppBar>
       </div>
     );
