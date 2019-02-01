@@ -35,7 +35,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   paper: {
-    paddingTop: '1em',
+    padding: '2em',
     textAlign: "center",
     color: theme.palette.text.secondary,
     width: "70%",
@@ -233,7 +233,7 @@ class NewEntryForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="newentry" className={classes.root}>
+      <div className="newentry">
         <form onSubmit={this.handleSubmit} id="form">
           <Paper className={classes.paper}>
             <h2 style={{ marginTop: "0" }}>

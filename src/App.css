@@ -1,25 +1,16 @@
-body > #root > div {
-  height: 100vh !important;
+body {
+  height: 100% !important;
 }
 
 body{
   font-family: 'Varela Round', sans-serif;
 }
-.Landing, .NewEntry, .Progress, .loading-container, .register {
+.Landing, .newentry, .Progress, .loading-container, .register {
   background: #ADA996;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to top, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to top, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-}
-.loading-container, .Progress {
-  height: 435px;
-  width: auto
 }
 
-.Footer {
-  background: #a8e063;
-}
 
 .lds-ring {
   display: block;
@@ -29,10 +20,10 @@ background: linear-gradient(to top, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C,
   margin-right: auto;
   width: 64px;
   height: 64px;
-  background: #a8e063;
+  background: #ADA996;
 }
 .lds-ring div {
-  background: #a8e063;
+  background: #ADA996;
   box-sizing: border-box;
   display: block;
   position: absolute;
