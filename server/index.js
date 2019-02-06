@@ -23,9 +23,11 @@ let mongoose = require("mongoose");
 mongoose.Promise=global.Promise;
 mongoose.connect('mongodb://cynthiawilliamsa:fitness123@ds121814.mlab.com:21814/fitnesstats')
 
-app.listen(3002, (err) => {
+let port = process.env.PORT || 3002;
+
+app.listen(port, (err) => {
     if(err) {
         return console.log("Error", err);
     }
-    console.log("Web server live on 3002")
+    console.log(`Web server live on ${port}`)
 });
