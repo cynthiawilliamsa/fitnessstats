@@ -1,7 +1,8 @@
 let express = require("express");
 let bodyParser= require('body-parser');
 const nefr = require('./routes/newEntryFormRoutes');
- const usr = require('./routes/userRoutes');
+const usr = require('./routes/userRoutes');
+const passport = require('passport');
 
 const app = express();
 
@@ -13,15 +14,19 @@ app.use(function(req, res, next) {
     next();
   })
 
-//
+//middleware
 app.use(bodyParser.json());
 app.use(express.static('build'));
 app.use(nefr)
 app.use(usr)
 
+//database connect
 let mongoose = require("mongoose");
 mongoose.Promise=global.Promise;
-mongoose.connect('mongodb://cynthiawilliamsa:fitness123@ds121814.mlab.com:21814/fitnesstats')
+mongoose.connect('mongodb://cynthiawilliamsa:fitness123@ds121814.mlab.com:21814/fitnesstats', { useNewUrlParser: true })
+
+//Passport Config
+require('../config/passport')(passport);
 
 let port = process.env.PORT || 3002;
 
