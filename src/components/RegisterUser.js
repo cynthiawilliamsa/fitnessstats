@@ -9,6 +9,7 @@ const styles = theme => ({
     paper: {
         position: "relative",
         display: "flex",
+        marginTop: '3%',
         width: theme.spacing.unit * 60,
         textAlign: 'center',
         align: 'center',
@@ -16,11 +17,16 @@ const styles = theme => ({
         outline: "none",
         color:'black',
         borderRadius: '5px',
-        padding: "10px"
+        padding: "10px",
+        marginLeft: 'auto',
+        marginRight: 'auto'
       },
   textField: {
     padding: "10px",
     height: "35px"
+  },
+  button: {
+    margin: "5px"
   }
 });
 
@@ -56,6 +62,7 @@ class RegisterUser extends Component {
       },
       method: "POST",
       body: JSON.stringify(this.state)
+      
     })
       .then(function(data) {
         console.log("request success", data);
@@ -64,6 +71,7 @@ class RegisterUser extends Component {
         console.log("request failure.", error);
       });
       //clear state after form data sent to server
+      console.log(this.state)
       this.setState({
           firstName: "",
           lastName: "",
@@ -92,7 +100,7 @@ class RegisterUser extends Component {
             alignItems="center"
             justify="center"
           >
-          <h3 class="text-center">Account Register</h3>
+          <h3 className="text-center">Account Register</h3>
           
             <form
               onSubmit={this.handleSubmit}
@@ -148,8 +156,11 @@ class RegisterUser extends Component {
                 required
               />
               <br />
-              <Button type="submit" variant="contained" color="primary">
+              <Button className={classes.button} type="submit" variant="contained" color="primary">
                 Submit
+              </Button>
+              <Button type="submit" variant="contained" color="primary">
+                Login
               </Button>
             </form>
           </Grid>

@@ -31,7 +31,7 @@ class Footer extends Component {
           <Tabs
             value={this.state.value}
             onChange={this.handleChange}
-            indicatorColor=""
+            indicatorColor="primary"
             textColor="primary"
             centered
           >

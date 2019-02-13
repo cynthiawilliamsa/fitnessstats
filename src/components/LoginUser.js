@@ -88,7 +88,7 @@ class LoginUser extends Component {
             alignItems="center"
             justify="center"
           >
-          <h3 class="text-center">Account Login</h3>
+          <h3 className="text-center">Account Login</h3>
           
             <form
               onSubmit={this.handleSubmit}

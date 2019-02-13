@@ -9,7 +9,7 @@ const User = mongoose.model('user');
 
 //User Register route
 router.get('/users/register', (req, res) => {
-    console.log("/register")
+    console.log("/users/register")
     res.render("/users/login");
 });
 
@@ -25,7 +25,7 @@ router.post('users/login', (req, res, next)=> {
 //register form post
 router.post('/users/register', (req, res)=>{
     let errors = [];
-    console.log(req.body)
+    console.log(req.body);
     if (req.body.password != req.body.password2) {
       errors.push({ text: "Passwords do not match" });
     }
