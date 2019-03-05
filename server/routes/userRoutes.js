@@ -20,6 +20,7 @@ router.post('users/login', (req, res, next)=> {
     failureRedirect: '/login',
     failureFlash: false
   })(req, res, next);
+  return res.redirect('/landing');
 })
 
 //register form post

@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import {Redirect} from 'react-router-dom';
 
 const styles = theme => ({
     paper: {
@@ -29,8 +30,20 @@ const styles = theme => ({
 class LoginUser extends Component {
   state = {   
     email: "",
-    password: ""    
+    password: ""   ,
+    redirect: false 
   };
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/home' />
+    }
+  }
 
   handleChange = ({ target: { name, value } }) => {
     console.log(value);
@@ -45,6 +58,7 @@ class LoginUser extends Component {
   }
 
   handleSubmit = e => {
+    debugger
     e.preventDefault();
     //fetch creats JSON object and sends to server.
     fetch("/users/login", {
@@ -58,6 +72,7 @@ class LoginUser extends Component {
     })
       .then(function(data) {
         console.log("request success", data);
+        document.cookie = 'isLoggedIn=true;max-age=60;'
       })
       .catch(function(error) {
         console.log("request failure.", error);
@@ -115,7 +130,8 @@ class LoginUser extends Component {
                 required
               />
                <br />
-              <Button type="submit" variant="contained" color="primary">
+               {this.renderRedirect()}
+              <Button type="submit" variant="contained" color="primary" >
                 Submit
               </Button>
             </form>

@@ -4,6 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import {Redirect} from "react-router";
+
 
 const styles = theme => ({
     paper: {
@@ -36,11 +38,25 @@ class RegisterUser extends Component {
     lastName: "",
     email: "",
     password: "",
-    password2: ""
+    password2: "",
+    redirect: false
+  }
+
+  setRedirect = () => {
+    console.log("set")
+      this.setState({
+        redirect: true
+      });
   };
 
+  renderRedirect = () => {
+    console.log('render')
+    if (this.state.redirect) {
+      return <Redirect push to='./LoginUser'/>
+    }
+  }
+
   handleChange = ({ target: { name, value } }) => {
-    console.log(value);
     this.setState({
       ...this.state,
       [name]: value
@@ -71,7 +87,6 @@ class RegisterUser extends Component {
         console.log("request failure.", error);
       });
       //clear state after form data sent to server
-      console.log(this.state)
       this.setState({
           firstName: "",
           lastName: "",
@@ -159,7 +174,8 @@ class RegisterUser extends Component {
               <Button className={classes.button} type="submit" variant="contained" color="primary">
                 Submit
               </Button>
-              <Button type="submit" variant="contained" color="primary">
+              {this.renderRedirect()}
+              <Button type="submit" variant="contained" color="primary" onClick = {this.setRedirect}>
                 Login
               </Button>
             </form>

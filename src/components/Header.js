@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import LogOut from './LogOut';
 
 class Header extends Component {
   render() {
@@ -9,8 +10,8 @@ class Header extends Component {
         <AppBar position="static">
         <Toolbar>
           <h1>Fitness Stats Tracker</h1>
-        </Toolbar>
-        
+          <LogOut/>
+        </Toolbar>        
       </AppBar>
       </div>
     );
